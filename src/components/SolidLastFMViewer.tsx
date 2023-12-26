@@ -19,6 +19,8 @@ import { Image } from "./MBtypes";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
 
+import styles from "./SolidLastFMViewer.module.css";
+
 export interface Colors {
 	primary: string | undefined;
 	secondary: string | undefined;
@@ -61,7 +63,10 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 			value={{ colors: colors, track: track, loading: loading }}
 		>
 			<div
-				class="glass  relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
+				class={
+					styles.lfmvCard +
+					" glass relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
+				}
 				style={{ background: colors()?.primary }}
 			>
 				{track() instanceof Error ? (
@@ -81,7 +86,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									?.lastfmImages as LastFmImage[]
 							)[3]["#text"] ? (
 								<img
-									class="w-min overflow-hidden object-cover"
+									class="block h-full w-full overflow-hidden object-cover align-middle"
 									src={
 										(
 											(track() as TrackInfo)
@@ -92,7 +97,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								/>
 							) : (track() as TrackInfo)?.MBImages ? (
 								<img
-									class="w-min overflow-hidden object-cover"
+									class="block h-full w-full overflow-hidden object-cover align-middle"
 									src={
 										(
 											(track() as TrackInfo)

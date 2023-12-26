@@ -16,6 +16,7 @@ const TrackProgressBar = () => {
 	const context = useContext<{
 		colors: Accessor<Colors | undefined>;
 		track: Accessor<TrackInfo | Error | undefined>;
+		loading: Accessor<boolean | undefined>;
 	}>(lfmContext);
 	return (
 		<>

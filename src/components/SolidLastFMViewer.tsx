@@ -16,6 +16,8 @@ import "../index.css";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
 import { LastFmImage } from "./LFMtypes";
 import { Image } from "./MBtypes";
+import ErrorView from "./ErrorView/ErrorView";
+import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
 
 export interface Colors {
 	primary: string | undefined;
@@ -31,6 +33,7 @@ export interface Props {
 export const lfmContext = createContext<{
 	colors: Accessor<Colors | undefined>;
 	track: Accessor<TrackInfo | Error | undefined>;
+	loading: Accessor<boolean | undefined>;
 }>({
 	colors: () => ({ primary: "white", secondary: "black", accent: "#aaa" }),
 	track: () => ({
@@ -43,7 +46,8 @@ export const lfmContext = createContext<{
 		pastTracks: [],
 		duration: 0,
 		error: undefined
-	})
+	}),
+	loading: () => true
 });
 
 const unexpectedErrors = [
@@ -59,29 +63,15 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 		updateInterval
 	});
 	return (
-		<lfmContext.Provider value={{ colors: colors, track: track }}>
+		<lfmContext.Provider
+			value={{ colors: colors, track: track, loading: loading }}
+		>
 			<div
 				class="glass  relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
 				style={{ background: colors()?.primary }}
 			>
 				{track() instanceof Error ? (
-					<div>
-						{unexpectedErrors.includes(message()) ? (
-							""
-						) : (
-							<h1>
-								Hello developer👋, please consider handling the
-								following error before deployment:
-							</h1>
-						)}
-
-						<div class="mx-auto my-4 w-11/12 rounded-lg bg-red-900 p-5 text-xl text-red-200 shadow-inner">
-							<span class="mr-2 rounded-lg bg-black/10 p-2 text-white">
-								Error
-							</span>
-							{message()}
-						</div>
-					</div>
+					<ErrorView message={message()} />
 				) : (
 					<>
 						<figure
@@ -148,32 +138,22 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								style={{ color: colors()?.secondary }}
 								class="flex flex-col gap-2 text-xs"
 							>
-								{loading() ? (
-									<div class="flex justify-center">
-										<div class="skeleton mr-2 h-4 w-4 rounded-full"></div>
-										<div class="skeleton h-4 w-1/2"></div>
-									</div>
-								) : (track() as TrackInfo)?.artistName ? (
-									<span class="flex items-center justify-center gap-1">
-										<FaRegularUser />
-										{(track() as TrackInfo)?.artistName}
-									</span>
-								) : (
-									"Artist name not available"
-								)}
-								{loading() ? (
-									<div class="flex justify-center">
-										<div class="skeleton mr-2 h-4 w-4 rounded-full"></div>
-										<div class="skeleton h-4 w-1/2"></div>
-									</div>
-								) : (track() as TrackInfo)?.albumTitle ? (
-									<span class="flex items-center justify-center gap-1">
-										<FaSolidCompactDisc />
-										{(track() as TrackInfo)?.albumTitle}
-									</span>
-								) : (
-									"Album name is not Available"
-								)}
+								<LoadingSkeleton fallbackMsg="Artist name not available">
+									{
+										<span class="flex items-center justify-center gap-1">
+											<FaRegularUser />
+											{(track() as TrackInfo)?.artistName}
+										</span>
+									}
+								</LoadingSkeleton>
+								<LoadingSkeleton fallbackMsg="Album name not available">
+									{
+										<span class="flex items-center justify-center gap-1">
+											<FaSolidCompactDisc />
+											{(track() as TrackInfo)?.albumTitle}
+										</span>
+									}
+								</LoadingSkeleton>
 							</div>
 							<PastTracks />
 							<div

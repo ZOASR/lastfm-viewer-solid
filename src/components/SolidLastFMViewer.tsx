@@ -167,7 +167,6 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 												}
 											</span>
 										) : null}
-										{track() !== null ?? ""}
 									</LoadingSkeleton>
 								</div>
 								<PastTracks />

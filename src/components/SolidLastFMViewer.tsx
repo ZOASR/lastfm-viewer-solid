@@ -50,12 +50,6 @@ export const lfmContext = createContext<{
 	loading: () => true
 });
 
-const unexpectedErrors = [
-	"NetworkError when attempting to fetch resource.",
-	"Login: User required to be logged in",
-	"Failed to fetch"
-];
-
 const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 	const { track, colors, loading, message }: lfmvHook = useLastfmViewer({
 		api_key,

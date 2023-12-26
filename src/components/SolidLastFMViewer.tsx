@@ -141,12 +141,12 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									}
 								</LoadingSkeleton>
 								<LoadingSkeleton fallbackMsg="Album name not available">
-									{
+									{(track() as TrackInfo)?.albumTitle && (
 										<span class="flex items-center justify-center gap-1">
 											<FaSolidCompactDisc />
 											{(track() as TrackInfo)?.albumTitle}
 										</span>
-									}
+									)}
 								</LoadingSkeleton>
 							</div>
 							<PastTracks />

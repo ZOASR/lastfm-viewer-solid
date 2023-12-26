@@ -177,6 +177,16 @@ export const getLatestTrack = async (
 			albumTitle
 		);
 
+		LatestTrack = {
+			trackName: trackName,
+			artistName: artistName,
+			albumTitle: albumTitle,
+			lastfmImages: lastfmImages,
+			MBImages: undefined,
+			nowplaying: isNowplaying,
+			pastTracks: pasttracks as unknown[],
+			duration: duration
+		};
 		if (releases) {
 			for (let release of releases) {
 				const rleaseInfo: ReleaseInfo = await getMBReleaseInfo(

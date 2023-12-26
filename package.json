@@ -32,7 +32,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "update": "npm i --legacy-peer-deps && git add . && git commit -m \"update: v%npm_package_version%\""
   },
   "dependencies": {
     "solid-js": "^1.7.8"

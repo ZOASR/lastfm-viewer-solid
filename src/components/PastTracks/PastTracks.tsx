@@ -24,7 +24,7 @@ const PastTracks = () => {
 				}}
 			>
 				<div
-					class="divider mx-auto mb-0 mt-0.5 w-1/2 rounded-lg p-4 text-xs sm:text-sm"
+					class="divider mx-auto mb-0 mt-0.5 w-1/2 rounded-lg p-2 text-xs sm:text-sm"
 					style={{
 						color: context.colors()?.secondary,
 						background: context.colors()?.accent + "22"

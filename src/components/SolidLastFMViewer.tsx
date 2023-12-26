@@ -7,7 +7,7 @@ import PastTracks from "./PastTracks/PastTracks";
 import {
 	FaBrandsLastfm,
 	FaRegularUser,
-	FaSolidCompactDisc,
+	FaSolidCompactDisc
 } from "solid-icons/fa";
 import { SiMusicbrainz } from "solid-icons/si";
 
@@ -42,26 +42,26 @@ export const lfmContext = createContext<{
 		nowplaying: false,
 		pastTracks: [],
 		duration: 0,
-		error: undefined,
-	}),
+		error: undefined
+	})
 });
 
 const unexpectedErrors = [
 	"NetworkError when attempting to fetch resource.",
 	"Login: User required to be logged in",
-	"Failed to fetch",
+	"Failed to fetch"
 ];
 
 const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 	const { track, colors, loading, message }: lfmvHook = useLastfmViewer({
 		api_key,
 		user,
-		updateInterval,
+		updateInterval
 	});
 	return (
 		<lfmContext.Provider value={{ colors: colors, track: track }}>
 			<div
-				class="flex  flex-col w-full h-full glass mx-auto shadow-xl relative ring-2 rounded-lg ring-slate-950/5 p-4"
+				class="glass  relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
 				style={{ background: colors()?.primary }}
 			>
 				{track() instanceof Error ? (
@@ -75,8 +75,8 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							</h1>
 						)}
 
-						<div class="text-red-200 text-xl p-5 bg-red-900 rounded-lg w-11/12 mx-auto my-4 shadow-inner">
-							<span class="p-2 text-white mr-2 bg-black/10 rounded-lg">
+						<div class="mx-auto my-4 w-11/12 rounded-lg bg-red-900 p-5 text-xl text-red-200 shadow-inner">
+							<span class="mr-2 rounded-lg bg-black/10 p-2 text-white">
 								Error
 							</span>
 							{message()}
@@ -85,11 +85,10 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 				) : (
 					<>
 						<figure
-							class="h-auto mx-auto overflow-hidden border-inherit mb-2 rounded-lg"
+							class="mx-auto mb-2 h-auto overflow-hidden rounded-lg border-inherit"
 							style={{
-								"box-shadow": `0 0 20px ${
-									colors()?.secondary
-								}99`,
+								"box-shadow": `0 0 20px ${colors()
+									?.secondary}99`
 							}}
 						>
 							{(track() as TrackInfo)?.lastfmImages &&
@@ -98,7 +97,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									?.lastfmImages as LastFmImage[]
 							)[3]["#text"] ? (
 								<img
-									class="object-cover w-min overflow-hidden"
+									class="w-min overflow-hidden object-cover"
 									src={
 										(
 											(track() as TrackInfo)
@@ -109,7 +108,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								/>
 							) : (track() as TrackInfo)?.MBImages ? (
 								<img
-									class="object-cover w-min overflow-hidden"
+									class="w-min overflow-hidden object-cover"
 									src={
 										(
 											(track() as TrackInfo)
@@ -127,14 +126,14 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							)}
 						</figure>
 
-						<div class="flex flex-col gap-1 filter drop-shadow-lg h-min">
+						<div class="flex h-min flex-col gap-1 drop-shadow-lg filter">
 							{(track() as TrackInfo)?.nowplaying ? (
 								<TrackProgressBar />
 							) : (
 								""
 							)}
 							<h1
-								class="sm:text-base text-xs shadow:lg text-center mx-auto mt-1 font-bold"
+								class="shadow:lg mx-auto mt-1 text-center text-xs font-bold sm:text-base"
 								style={{ color: colors()?.secondary }}
 							>
 								{loading() ? (
@@ -147,7 +146,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							</h1>
 							<div
 								style={{ color: colors()?.secondary }}
-								class="text-xs flex flex-col gap-2"
+								class="flex flex-col gap-2 text-xs"
 							>
 								{loading() ? (
 									<div class="flex justify-center">
@@ -155,7 +154,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 										<div class="skeleton h-4 w-1/2"></div>
 									</div>
 								) : (track() as TrackInfo)?.artistName ? (
-									<span class="flex justify-center items-center gap-1">
+									<span class="flex items-center justify-center gap-1">
 										<FaRegularUser />
 										{(track() as TrackInfo)?.artistName}
 									</span>
@@ -168,7 +167,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 										<div class="skeleton h-4 w-1/2"></div>
 									</div>
 								) : (track() as TrackInfo)?.albumTitle ? (
-									<span class="flex justify-center items-center gap-1">
+									<span class="flex items-center justify-center gap-1">
 										<FaSolidCompactDisc />
 										{(track() as TrackInfo)?.albumTitle}
 									</span>
@@ -179,7 +178,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							<PastTracks />
 							<div
 								style={{ color: colors()?.secondary }}
-								class="flex w-full  mt-2 filter drop-shadow-lg justify-between"
+								class="mt-2 flex  w-full justify-between drop-shadow-lg filter"
 							>
 								<span class="flex gap-2">
 									<a
@@ -197,7 +196,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									</a>
 								</span>
 								<a
-									class=" text-xs flex gap-2 items-center"
+									class=" flex items-center gap-2 text-xs"
 									href={`https://www.last.fm/user/${user}`}
 								>
 									<FaRegularUser />

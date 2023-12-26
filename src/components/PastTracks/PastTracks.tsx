@@ -17,17 +17,17 @@ const PastTracks = () => {
 	return (
 		<>
 			<div
-				class="mb-4 rounded-lg sm:p-4 p-0.5"
+				class="mb-4 rounded-lg p-0.5 sm:p-4"
 				style={{
 					color: context.colors()?.secondary,
-					background: context.colors()?.accent + "22",
+					background: context.colors()?.accent + "22"
 				}}
 			>
 				<div
-					class="divider w-1/2 sm:text-sm text-xs mx-auto mb-0 mt-0.5 rounded-lg p-4"
+					class="divider mx-auto mb-0 mt-0.5 w-1/2 rounded-lg p-4 text-xs sm:text-sm"
 					style={{
 						color: context.colors()?.secondary,
-						background: context.colors()?.accent + "22",
+						background: context.colors()?.accent + "22"
 					}}
 				>
 					Past tracks
@@ -37,53 +37,53 @@ const PastTracks = () => {
 						context.track() instanceof Error
 							? []
 							: (context.track() as TrackInfo)?.pastTracks
-							? cloneArray(
-									(context.track() as TrackInfo)
-										?.pastTracks as any[]
-							  ).splice(
-									1,
-									(
+								? cloneArray(
 										(context.track() as TrackInfo)
-											?.pastTracks as Track[]
-									).length
-							  )
-							: []
+											?.pastTracks as any[]
+									).splice(
+										1,
+										(
+											(context.track() as TrackInfo)
+												?.pastTracks as Track[]
+										).length
+									)
+								: []
 					}
 					fallback={<div>Loading...</div>}
 				>
 					{(track_) => {
 						return (
-							<div class="sm:text-[75%]  text-[50%]">
+							<div class="text-[50%]  sm:text-[75%]">
 								<div class="divider m-0.5 h-min"></div>
 								<div
 									class={
-										"flex justify-between items-center gap-4 overflow-x-scroll whitespace-nowrap width-full " +
+										"width-full flex items-center justify-between gap-4 overflow-x-scroll whitespace-nowrap " +
 										styles.scrollable
 									}
 								>
 									<a
 										href={track_.url}
 										target="_blank"
-										class="hover:underline text-start transition-all duration-150 flex-1 font-black text-ellipsis"
+										class="flex-1 text-ellipsis text-start font-black transition-all duration-150 hover:underline"
 										style={{
-											color: context.colors()?.secondary,
+											color: context.colors()?.secondary
 										}}
 									>
 										{track_.name}
 									</a>
 									<span
-										class="flex items-center sm:flex-row flex-col flex-1 "
+										class="flex flex-1 flex-col items-center sm:flex-row "
 										style={{
-											color: context.colors()?.secondary,
+											color: context.colors()?.secondary
 										}}
 									>
 										<FaRegularUser />
 										{track_.artist["#text"]}
 									</span>
 									<span
-										class="flex sm:flex-row flex-col items-center "
+										class="flex flex-col items-center sm:flex-row "
 										style={{
-											color: context.colors()?.secondary,
+											color: context.colors()?.secondary
 										}}
 									>
 										<IoCalendarClearOutline />

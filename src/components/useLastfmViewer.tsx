@@ -14,7 +14,7 @@ export type lfmvHook = {
 export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 	user,
 	api_key,
-	updateInterval,
+	updateInterval
 }: Props) => {
 	const [track, setTrack] = createSignal<TrackInfo | Error>();
 	const [colors, setColors] = createSignal<Colors | undefined>();
@@ -57,7 +57,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 			prominent(imageUrl, {
 				amount: 100,
 				format: "hex",
-				sample: 10,
+				sample: 10
 			})
 				.then((color) => {
 					const color1: string = color[0] as string;
@@ -66,7 +66,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 					setColors({
 						primary: color1,
 						secondary: color2,
-						accent: color3,
+						accent: color3
 					});
 				})
 				.catch(() => setColors(undefined));
@@ -77,6 +77,6 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 		track,
 		colors,
 		loading,
-		message,
+		message
 	};
 };

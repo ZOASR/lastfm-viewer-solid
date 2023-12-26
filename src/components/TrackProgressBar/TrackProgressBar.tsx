@@ -5,11 +5,11 @@ import { TrackInfo } from "../lastfm";
 
 const msToMins = (ms: number) =>
 	Math.floor(ms / 1000 / 60).toLocaleString(undefined, {
-		maximumSignificantDigits: 2,
+		maximumSignificantDigits: 2
 	});
 const msToSecs = (ms: number) =>
 	Math.floor((ms / 1000) % 60).toLocaleString(undefined, {
-		maximumSignificantDigits: 2,
+		maximumSignificantDigits: 2
 	});
 
 const TrackProgressBar = () => {
@@ -19,25 +19,25 @@ const TrackProgressBar = () => {
 	}>(lfmContext);
 	return (
 		<>
-			<div class="w-full flex justify-center items-center my-0.5">
+			<div class="my-0.5 flex w-full items-center justify-center">
 				<span class={styles.nowplaying}> Now Playing</span>
 				<div class={styles.icon}>
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary,
+							background: context?.colors()?.secondary
 						}}
 					/>
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary,
+							background: context?.colors()?.secondary
 						}}
 					/>
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary,
+							background: context?.colors()?.secondary
 						}}
 					/>
 				</div>
@@ -53,26 +53,26 @@ const TrackProgressBar = () => {
 						context.track() instanceof Error
 							? 0
 							: (context.track() as TrackInfo)
-							? ((context.track() as TrackInfo)
-									?.duration as number) / 1000
-							: 0
+								? ((context.track() as TrackInfo)
+										?.duration as number) / 1000
+								: 0
 					}
 				></progress>
 				<span class="text-xs">
 					{context.track() instanceof Error
 						? " "
 						: (context.track() as TrackInfo)
-						? ((context.track() as TrackInfo)?.duration as number) >
-						  0
-							? `${msToMins(
-									(context.track() as TrackInfo)
-										?.duration as number
-							  )}:${msToSecs(
-									(context.track() as TrackInfo)
-										?.duration as number
-							  )}`
-							: "--:--"
-						: "--:--"}
+							? ((context.track() as TrackInfo)
+									?.duration as number) > 0
+								? `${msToMins(
+										(context.track() as TrackInfo)
+											?.duration as number
+									)}:${msToSecs(
+										(context.track() as TrackInfo)
+											?.duration as number
+									)}`
+								: "--:--"
+							: "--:--"}
 				</span>
 			</div>
 		</>

@@ -1,4 +1,4 @@
-import { Accessor, createContext } from "solid-js";
+import { Accessor, Show, createContext } from "solid-js";
 import { TrackInfo } from "./lastfm";
 
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
@@ -70,102 +70,97 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 						styles.lfmvCard +
 						" glass relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
 					}
-					style={{ background: colors()?.primary }}
+					style={{ background: state.colors?.primary }}
 				>
-					{track() instanceof Error ? (
-						<ErrorView message={message()} />
+					{state.track instanceof Error ? (
+						<Show when={state.message}>
+							{<ErrorView message={state.message as string} />}
+						</Show>
 					) : (
 						<>
 							<figure
 								class="mx-auto mb-2 h-auto overflow-hidden rounded-lg border-inherit"
 								style={{
-									"box-shadow": `0 0 20px ${colors()
-										?.secondary}99`
+									"box-shadow": `0 0 20px ${state.colors?.secondary}99`
 								}}
 							>
-								{(track() as TrackInfo)?.lastfmImages &&
-								(
-									(track() as TrackInfo)
-										?.lastfmImages as LastFmImage[]
-								)[3]["#text"] ? (
+								<Show
+									when={state.track?.lastfmImages}
+									fallback={
+										<Show
+											when={state.track?.MBImages}
+											fallback={
+												<img
+													src={disc}
+													class=""
+													alt="Default album cover thumbnail"
+												/>
+											}
+										>
+											<img
+												class="block h-full w-full overflow-hidden object-cover align-middle"
+												src={
+													(
+														state.track
+															?.MBImages as Image[]
+													)[0].image
+												}
+												alt="Album Cover"
+											/>
+										</Show>
+									}
+								>
 									<img
 										class="block h-full w-full overflow-hidden object-cover align-middle"
 										src={
 											(
-												(track() as TrackInfo)
+												state.track
 													?.lastfmImages as LastFmImage[]
 											)[3]["#text"]
 										}
 										alt="Album Cover"
 									/>
-								) : (track() as TrackInfo)?.MBImages ? (
-									<img
-										class="block h-full w-full overflow-hidden object-cover align-middle"
-										src={
-											(
-												(track() as TrackInfo)
-													?.MBImages as Image[]
-											)[0].image
-										}
-										alt="Album Cover"
-									/>
-								) : (
-									<img
-										src={disc}
-										class=""
-										alt="Default album cover thumbnail"
-									/>
-								)}
+								</Show>
 							</figure>
 
 							<div class="flex h-min flex-col gap-1 drop-shadow-lg filter">
-								{(track() as TrackInfo)?.nowplaying ? (
+								{state.track?.nowplaying ? (
 									<TrackProgressBar />
 								) : (
 									""
 								)}
 								<h1
 									class="shadow:lg mx-auto mt-1 text-center text-xs font-bold sm:text-base"
-									style={{ color: colors()?.secondary }}
+									style={{ color: state.colors?.secondary }}
 								>
-									{loading() ? (
-										<div class="skeleton h-8 w-fit"></div>
-									) : (track() as TrackInfo)?.trackName ? (
-										(track() as TrackInfo)?.trackName
-									) : (
-										"Track title not available"
-									)}
+									<LoadingSkeleton fallbackMsg="Track title not available">
+										{state.track?.trackName}
+									</LoadingSkeleton>
 								</h1>
 								<div
-									style={{ color: colors()?.secondary }}
+									style={{ color: state.colors?.secondary }}
 									class="flex flex-col gap-2 text-xs"
 								>
 									<LoadingSkeleton fallbackMsg="Artist name not available">
 										{
 											<span class="flex items-center justify-center gap-1">
 												<FaRegularUser />
-												{
-													(track() as TrackInfo)
-														?.artistName
-												}
+												{state.track?.artistName}
 											</span>
 										}
 									</LoadingSkeleton>
 									<LoadingSkeleton fallbackMsg="Album name not available">
-										{(track() as TrackInfo)?.albumTitle ? (
+										{state.track?.albumTitle ? (
 											<span class="flex items-center justify-center gap-1">
 												<FaSolidCompactDisc />
-												{
-													(track() as TrackInfo)
-														?.albumTitle
-												}
+												{state.track?.albumTitle}
 											</span>
 										) : null}
 									</LoadingSkeleton>
 								</div>
 								<PastTracks />
 								<div
-									style={{ color: colors()?.secondary }}
+									style={{ color: state.colors?.secondary }}
 									class="mt-2 flex  w-full justify-between drop-shadow-lg filter"
 								>
 									<span class="flex gap-2">

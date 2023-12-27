@@ -1,4 +1,4 @@
-import { Show, createContext } from "solid-js";
+import { Match, Show, Switch, createContext } from "solid-js";
 
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";
@@ -83,43 +83,40 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									"box-shadow": `0 0 20px ${state.colors?.secondary}99`
 								}}
 							>
-								<Show
-									when={state.track?.lastfmImages}
+								<Switch
 									fallback={
-										<Show
-											when={state.track?.MBImages}
-											fallback={
-												<img
-													src={disc}
-													class=""
-													alt="Default album cover thumbnail"
-												/>
-											}
-										>
-											<img
-												class="block h-full w-full overflow-hidden object-cover align-middle"
-												src={
-													(
-														state.track
-															?.MBImages as Image[]
-													)[0].image
-												}
-												alt="Album Cover"
-											/>
-										</Show>
+										<img
+											src={disc}
+											class=""
+											alt="Default album cover thumbnail"
+										/>
 									}
 								>
-									<img
-										class="block h-full w-full overflow-hidden object-cover align-middle"
-										src={
-											(
-												state.track
-													?.lastfmImages as LastFmImage[]
-											)[3]["#text"]
-										}
-										alt="Album Cover"
-									/>
-								</Show>
+									<Match when={state.track?.lastfmImages}>
+										<img
+											class="block h-full w-full overflow-hidden object-cover align-middle"
+											src={
+												(
+													state.track
+														?.lastfmImages as LastFmImage[]
+												)[3]["#text"]
+											}
+											alt="Album Cover"
+										/>
+									</Match>
+									<Match when={state.track?.MBImages}>
+										<img
+											class="block h-full w-full overflow-hidden object-cover align-middle"
+											src={
+												(
+													state.track
+														?.MBImages as Image[]
+												)[0].image
+											}
+											alt="Album Cover"
+										/>
+									</Match>
+								</Switch>
 							</figure>
 
 							<div class="flex h-min flex-col gap-1 drop-shadow-lg filter">

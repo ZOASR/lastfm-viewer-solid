@@ -33,7 +33,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "npm run build",
-    "update": "npm i --legacy-peer-deps && git add . && git commit -m \"update: v%npm_package_version%\" && git tag v%npm_package_version% && git push origin v%npm_package_version% && git push origin && git-cliff > CHANGELOG.md && npm publish"
+    "update": "npm i --legacy-peer-deps && git add . && git commit -m \"update: v%npm_package_version%\" && git tag v%npm_package_version% && git push origin v%npm_package_version% && git-cliff > CHANGELOG.md && git push origin && npm publish"
   },
   "dependencies": {
     "solid-js": "^1.7.8"

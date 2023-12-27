@@ -1,5 +1,4 @@
-import { Accessor, Show, createContext } from "solid-js";
-import { TrackInfo } from "./lastfm";
+import { Show, createContext } from "solid-js";
 
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";

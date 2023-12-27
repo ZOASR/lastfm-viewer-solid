@@ -2,7 +2,7 @@ import { prominent } from "color.js";
 import { TrackInfo, getLatestTrack } from "./lastfm";
 import { Colors } from "./SolidLastFMViewer";
 import { Props } from "./SolidLastFMViewer";
-import { Accessor, createEffect, createSignal, onCleanup } from "solid-js";
+import { createEffect, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 
 export type lfmvHook = {

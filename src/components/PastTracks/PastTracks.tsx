@@ -19,33 +19,30 @@ const PastTracks = () => {
 			<div
 				class="mb-4 rounded-lg p-0.5 sm:p-4"
 				style={{
-					color: context.colors()?.secondary,
-					background: context.colors()?.accent + "22"
+					color: context.colors?.secondary,
+					background: context.colors?.accent + "22"
 				}}
 			>
 				<div
 					class="divider mx-auto mb-0 mt-0.5 w-1/2 rounded-lg p-2 text-xs sm:text-sm"
 					style={{
-						color: context.colors()?.secondary,
-						background: context.colors()?.accent + "22"
+						color: context.colors?.secondary,
+						background: context.colors?.accent + "22"
 					}}
 				>
 					Past tracks
 				</div>
 				<For
 					each={
-						context.track() instanceof Error
+						context.track instanceof Error
 							? []
-							: (context.track() as TrackInfo)?.pastTracks
+							: (context.track as TrackInfo)?.pastTracks
 								? cloneArray(
-										(context.track() as TrackInfo)
-											?.pastTracks as any[]
+										context.track?.pastTracks as any[]
 									).splice(
 										1,
-										(
-											(context.track() as TrackInfo)
-												?.pastTracks as Track[]
-										).length
+										(context.track?.pastTracks as Track[])
+											.length
 									)
 								: []
 					}
@@ -66,7 +63,7 @@ const PastTracks = () => {
 										target="_blank"
 										class="flex-1 text-ellipsis text-start font-black transition-all duration-150 hover:underline"
 										style={{
-											color: context.colors()?.secondary
+											color: context.colors?.secondary
 										}}
 									>
 										{track_.name}
@@ -74,7 +71,7 @@ const PastTracks = () => {
 									<span
 										class="flex flex-1 flex-col items-center sm:flex-row "
 										style={{
-											color: context.colors()?.secondary
+											color: context.colors?.secondary
 										}}
 									>
 										<FaRegularUser />
@@ -83,7 +80,7 @@ const PastTracks = () => {
 									<span
 										class="flex flex-col items-center sm:flex-row "
 										style={{
-											color: context.colors()?.secondary
+											color: context.colors?.secondary
 										}}
 									>
 										<IoCalendarClearOutline />

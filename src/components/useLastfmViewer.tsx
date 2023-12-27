@@ -3,12 +3,13 @@ import { TrackInfo, getLatestTrack } from "./lastfm";
 import { Colors } from "./SolidLastFMViewer";
 import { Props } from "./SolidLastFMViewer";
 import { Accessor, createEffect, createSignal, onCleanup } from "solid-js";
+import { createStore } from "solid-js/store";
 
 export type lfmvHook = {
-	track: Accessor<TrackInfo | Error | undefined>;
-	colors: Accessor<Colors | undefined>;
-	loading: Accessor<boolean>;
-	message: Accessor<string>;
+	track: TrackInfo | Error | undefined;
+	colors: Colors | undefined;
+	loading: boolean;
+	message: string | undefined;
 };
 
 export const useLastfmViewer: ({}: Props) => lfmvHook = ({
@@ -16,21 +17,42 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 	api_key,
 	updateInterval
 }: Props) => {
-	const [track, setTrack] = createSignal<TrackInfo | Error>();
-	const [colors, setColors] = createSignal<Colors | undefined>();
-	const [loading, setLoading] = createSignal(true);
-	const [message, setMessage] = createSignal("");
-
+	const [lfmState, setLfmState] = createStore<{
+		track: TrackInfo | Error;
+		colors: Colors | undefined;
+		loading: boolean;
+		message: string | undefined;
+	}>({
+		track: {
+			trackName: "",
+			artistName: "",
+			albumTitle: "",
+			MBImages: undefined,
+			lastfmImages: undefined,
+			nowplaying: false,
+			pastTracks: [],
+			duration: 0
+		},
+		colors: undefined,
+		loading: true,
+		message: undefined
+	});
 	createEffect(() => {
 		const get = async () => {
 			const data: TrackInfo | Error = await getLatestTrack(user, api_key);
 			if (data instanceof Error) {
-				setTrack(data);
-				setMessage(data.message);
-				setLoading(false);
+				setLfmState((state) => ({
+					...state,
+					message: data.message,
+					loading: false,
+					track: data
+				}));
 			} else {
-				setTrack(data);
-				setLoading(false);
+				setLfmState((state) => ({
+					...state,
+					track: data,
+					loading: false
+				}));
 			}
 		};
 		get();
@@ -46,7 +68,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 	});
 
 	createEffect(() => {
-		const track_ = track();
+		const track_ = lfmState.track;
 		let imageUrl: string = "";
 		if (!(track_ instanceof Error)) {
 			if (track_ && track_.lastfmImages) {
@@ -63,20 +85,24 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 					const color1: string = color[0] as string;
 					const color2: string = color[98] as string;
 					const color3: string = color[51] as string;
-					setColors({
-						primary: color1,
-						secondary: color2,
-						accent: color3
-					});
+
+					setLfmState((state) => ({
+						...state,
+						colors: {
+							primary: color1,
+							secondary: color2,
+							accent: color3
+						}
+					}));
 				})
-				.catch(() => setColors(undefined));
+				.catch(() =>
+					setLfmState((state) => ({
+						...state,
+						colors: undefined
+					}))
+				);
 		}
 	});
 
-	return {
-		track,
-		colors,
-		loading,
-		message
-	};
+	return lfmState;
 };

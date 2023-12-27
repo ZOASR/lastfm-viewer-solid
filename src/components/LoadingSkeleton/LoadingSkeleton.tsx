@@ -4,7 +4,7 @@ import { lfmContext } from "../SolidLastFMViewer";
 
 interface Props {
 	children: JSX.Element | "";
-	fallbackMsg: string;
+	fallback: string;
 }
 
 const LoadingSkeleton = (props: Props) => {
@@ -14,7 +14,7 @@ const LoadingSkeleton = (props: Props) => {
 			<Show
 				when={context.loading}
 				fallback={
-					<Show when={props.children} fallback={props.fallbackMsg}>
+					<Show when={props.children} fallback={props.fallback}>
 						{props.children}
 					</Show>
 				}

@@ -1,7 +1,7 @@
 {
   "name": "solid-lastfm-viewer",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A solidjs component to view recent scrobbles for a last.fm user",
   "keywords": [
     "lastfm",
@@ -33,7 +33,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "npm run build",
-    "update": "npm i --legacy-peer-deps && git add . && git commit -m \"update: v%npm_package_version%\" && git tag v%npm_package_version% && git push origin v%npm_package_version% && && git push origin && git-cliff > CHANGELOG.md && npm publish"
+    "update": "npm i --legacy-peer-deps && git add . && git commit -m \"update: v%npm_package_version%\" && git tag v%npm_package_version% && git push origin v%npm_package_version% && git push origin && git-cliff > CHANGELOG.md && npm publish"
   },
   "dependencies": {
     "solid-js": "^1.7.8"

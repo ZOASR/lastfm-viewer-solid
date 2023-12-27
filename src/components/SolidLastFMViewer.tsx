@@ -67,7 +67,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 				<div
 					class={
 						styles.lfmvCard +
-						" glass relative mx-auto flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
+						" glass relative mx-auto box-border flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
 					}
 					style={{ background: state.colors?.primary }}
 				>
@@ -85,11 +85,18 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							>
 								<Switch
 									fallback={
-										<img
-											src={disc}
-											class=""
-											alt="Default album cover thumbnail"
-										/>
+										<LoadingSkeleton
+											class="mx-auto h-[300px] w-[300px]"
+											fallback={
+												<img
+													src={disc}
+													class=""
+													alt="Default album cover thumbnail"
+												/>
+											}
+										>
+											{null}
+										</LoadingSkeleton>
 									}
 								>
 									<Match when={state.track?.lastfmImages}>
@@ -120,16 +127,22 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 							</figure>
 
 							<div class="flex h-min flex-col gap-1 drop-shadow-lg filter">
-								{state.track?.nowplaying ? (
-									<TrackProgressBar />
-								) : (
-									""
-								)}
+								<LoadingSkeleton
+									class="mx-auto h-[40px] w-[90%]"
+									fallback={null}
+								>
+									{state.track?.nowplaying && (
+										<TrackProgressBar />
+									)}
+								</LoadingSkeleton>
 								<h1
 									class="shadow:lg mx-auto mt-1 text-center text-xs font-bold sm:text-base"
 									style={{ color: state.colors?.secondary }}
 								>
-									<LoadingSkeleton fallback="Track title not available">
+									<LoadingSkeleton
+										class="mx-auto h-3 w-1/2"
+										fallback="Track title not available"
+									>
 										{state.track?.trackName}
 									</LoadingSkeleton>
 								</h1>
@@ -137,7 +150,10 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									style={{ color: state.colors?.secondary }}
 									class="flex flex-col gap-2 text-xs"
 								>
-									<LoadingSkeleton fallback="Artist name not available">
+									<LoadingSkeleton
+										class="mx-auto h-3 w-1/2"
+										fallback="Artist name not available"
+									>
 										{
 											<span class="flex items-center justify-center gap-1">
 												<FaRegularUser />
@@ -145,7 +161,10 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 											</span>
 										}
 									</LoadingSkeleton>
-									<LoadingSkeleton fallback="Album name not available">
+									<LoadingSkeleton
+										class="mx-auto h-3 w-1/2"
+										fallback="Album name not available"
+									>
 										{state.track?.albumTitle ? (
 											<span class="flex items-center justify-center gap-1">
 												<FaSolidCompactDisc />

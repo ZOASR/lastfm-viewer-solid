@@ -20,10 +20,7 @@ const LoadingSkeleton = (props: Props) => {
 					</Show>
 				}
 			>
-				<div class="flex justify-center">
-					<div class="skeleton mr-2 h-4 w-4 rounded-full"></div>
-					<div class="skeleton h-4 w-1/2"></div>
-				</div>
+				<div class={"skeleton " + props.class}></div>
 			</Show>
 		</>
 	);

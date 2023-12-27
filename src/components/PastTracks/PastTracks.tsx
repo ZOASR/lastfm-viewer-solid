@@ -5,6 +5,7 @@ import { FaRegularUser } from "solid-icons/fa";
 import { IoCalendarClearOutline } from "solid-icons/io";
 import { Track } from "../MBtypes";
 import { TrackInfo } from "../lastfm";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const identity: (x: any) => any = (x: any) => x;
 function cloneArray(arr: any[]) {
@@ -32,65 +33,69 @@ const PastTracks = () => {
 				>
 					Past tracks
 				</div>
-				<For
-					each={
-						context.track instanceof Error
-							? []
-							: (context.track as TrackInfo)?.pastTracks
-								? cloneArray(
-										context.track?.pastTracks as any[]
-									).splice(
-										1,
-										(context.track?.pastTracks as Track[])
-											.length
-									)
-								: []
-					}
-					fallback={<div>Loading...</div>}
-				>
-					{(track_) => {
-						return (
-							<div class="text-[50%]  sm:text-[75%]">
-								<div class="divider m-0.5 h-min"></div>
-								<div
-									class={
-										"width-full flex items-center justify-between gap-4 overflow-x-scroll whitespace-nowrap " +
-										styles.scrollable
-									}
-								>
-									<a
-										href={track_.url}
-										target="_blank"
-										class="flex-1 text-ellipsis text-start font-black transition-all duration-150 hover:underline"
-										style={{
-											color: context.colors?.secondary
-										}}
+				<LoadingSkeleton class="h-[200px]" fallback={<div></div>}>
+					<For
+						each={
+							context.track instanceof Error
+								? []
+								: (context.track as TrackInfo)?.pastTracks
+									? cloneArray(
+											context.track?.pastTracks as any[]
+										).splice(
+											1,
+											(
+												context.track
+													?.pastTracks as Track[]
+											).length
+										)
+									: []
+						}
+						fallback={<div>Loading...</div>}
+					>
+						{(track_) => {
+							return (
+								<div class={"text-[50%] sm:text-[75%]"}>
+									<div class="divider m-0.5 h-min"></div>
+									<div
+										class={
+											"width-full flex items-center justify-between gap-4 overflow-x-scroll whitespace-nowrap " +
+											styles.scrollable
+										}
 									>
-										{track_.name}
-									</a>
-									<span
-										class="flex flex-1 flex-col items-center sm:flex-row "
-										style={{
-											color: context.colors?.secondary
-										}}
-									>
-										<FaRegularUser />
-										{track_.artist["#text"]}
-									</span>
-									<span
-										class="flex flex-col items-center sm:flex-row "
-										style={{
-											color: context.colors?.secondary
-										}}
-									>
-										<IoCalendarClearOutline />
-										{track_.date["#text"]}
-									</span>
+										<a
+											href={track_.url}
+											target="_blank"
+											class="flex-1 text-ellipsis text-start font-black transition-all duration-150 hover:underline"
+											style={{
+												color: context.colors?.secondary
+											}}
+										>
+											{track_.name}
+										</a>
+										<span
+											class="flex flex-1 items-center justify-start gap-1"
+											style={{
+												color: context.colors?.secondary
+											}}
+										>
+											<FaRegularUser />
+											{track_.artist["#text"]}
+										</span>
+										<span
+											class="flex items-center gap-1"
+											style={{
+												color: context.colors?.secondary
+											}}
+										>
+											<IoCalendarClearOutline />
+											{track_.date["#text"]}
+										</span>
+									</div>
 								</div>
-							</div>
-						);
-					}}
-				</For>
+							);
+						}}
+					</For>
+				</LoadingSkeleton>
 			</div>
 		</>
 	);

@@ -1,7 +1,6 @@
-import { Accessor, useContext } from "solid-js";
-import { Colors, lfmContext } from "../SolidLastFMViewer";
+import { useContext } from "solid-js";
+import { lfmContext } from "../SolidLastFMViewer";
 import styles from "./TrackProgressBar.module.css";
-import { TrackInfo } from "../lastfm";
 
 const msToMins = (ms: number) =>
 	Math.floor(ms / 1000 / 60).toLocaleString(undefined, {
@@ -13,11 +12,7 @@ const msToSecs = (ms: number) =>
 	});
 
 const TrackProgressBar = () => {
-	const context = useContext<{
-		colors: Accessor<Colors | undefined>;
-		track: Accessor<TrackInfo | Error | undefined>;
-		loading: Accessor<boolean | undefined>;
-	}>(lfmContext);
+	const context = useContext(lfmContext);
 	return (
 		<>
 			<div class="my-0.5 flex w-full items-center justify-center">
@@ -26,51 +21,47 @@ const TrackProgressBar = () => {
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary
+							background: context?.colors?.secondary
 						}}
 					/>
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary
+							background: context?.colors?.secondary
 						}}
 					/>
 					<span
 						class={styles.musicbar}
 						style={{
-							background: context?.colors()?.secondary
+							background: context?.colors?.secondary
 						}}
 					/>
 				</div>
 			</div>
 			<div
 				class="flex items-center gap-1 whitespace-nowrap"
-				style={{ color: context?.colors()?.secondary }}
+				style={{ color: context?.colors?.secondary }}
 			>
 				<span class="text-xs">00:00</span>
 				<progress
 					class="progress mx-auto w-10/12"
 					max={
-						context.track() instanceof Error
+						context.track instanceof Error
 							? 0
-							: (context.track() as TrackInfo)
-								? ((context.track() as TrackInfo)
-										?.duration as number) / 1000
+							: context.track
+								? (context.track?.duration as number) / 1000
 								: 0
 					}
 				></progress>
 				<span class="text-xs">
-					{context.track() instanceof Error
+					{context.track instanceof Error
 						? " "
-						: (context.track() as TrackInfo)
-							? ((context.track() as TrackInfo)
-									?.duration as number) > 0
+						: context.track
+							? (context.track?.duration as number) > 0
 								? `${msToMins(
-										(context.track() as TrackInfo)
-											?.duration as number
+										context.track?.duration as number
 									)}:${msToSecs(
-										(context.track() as TrackInfo)
-											?.duration as number
+										context.track?.duration as number
 									)}`
 								: "--:--"
 							: "--:--"}

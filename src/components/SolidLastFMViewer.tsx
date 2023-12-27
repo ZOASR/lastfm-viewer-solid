@@ -32,28 +32,24 @@ export interface Props {
 	updateInterval?: number;
 }
 
-export const lfmContext = createContext<{
-	colors: Accessor<Colors | undefined>;
-	track: Accessor<TrackInfo | Error | undefined>;
-	loading: Accessor<boolean | undefined>;
-}>({
-	colors: () => ({ primary: "white", secondary: "black", accent: "#aaa" }),
-	track: () => ({
+export const lfmContext = createContext<lfmvHook>({
+	track: {
 		trackName: "",
 		artistName: "",
 		albumTitle: "",
-		MBImages: [],
-		lastfmImages: [],
+		MBImages: undefined,
+		lastfmImages: undefined,
 		nowplaying: false,
 		pastTracks: [],
-		duration: 0,
-		error: undefined
-	}),
-	loading: () => true
+		duration: 0
+	},
+	colors: undefined,
+	loading: true,
+	message: ""
 });
 
 const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
-	const { track, colors, loading, message }: lfmvHook = useLastfmViewer({
+	const state: lfmvHook = useLastfmViewer({
 		api_key,
 		user,
 		updateInterval
@@ -68,9 +64,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 			<link href="https://musicbrainz.org" rel="preconnect" />
 			<link href="http://ws.audioscrobbler.com" rel="preconnect" />
 			{/* preconnects */}
-			<lfmContext.Provider
-				value={{ colors: colors, track: track, loading: loading }}
-			>
+			<lfmContext.Provider value={state}>
 				<div
 					class={
 						styles.lfmvCard +

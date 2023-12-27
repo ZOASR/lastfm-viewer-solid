@@ -4,7 +4,8 @@ import { lfmContext } from "../SolidLastFMViewer";
 
 interface Props {
 	children: JSX.Element | "";
-	fallback: string;
+	fallback: JSX.Element | "";
+	class: string;
 }
 
 const LoadingSkeleton = (props: Props) => {

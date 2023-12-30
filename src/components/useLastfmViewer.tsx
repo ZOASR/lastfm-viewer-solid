@@ -3,6 +3,7 @@ import { createStore } from "solid-js/store";
 import { prominent } from "color.js";
 import { TrackInfo, getLatestTrack } from "@repo/utils/lastftm";
 import { Colors, Props } from "./SolidLastFMViewer";
+import { Track } from "@repo/utils/LFMtypes";
 
 export type lfmvHook = {
 	track: TrackInfo | Error | undefined;
@@ -38,29 +39,39 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 		message: undefined
 	});
 
-	async function get() {
+	async function get(
+		source: boolean,
+		{ value }: { value: TrackInfo | Error | undefined }
+	) {
 		const data: TrackInfo | Error = await getLatestTrack(user, api_key);
+		const dataTrack: string | undefined = !(data instanceof Error)
+			? data.trackName
+			: "";
+		const valueTrack: string | undefined =
+			value && !(value instanceof Error) ? value.trackName : "";
+		let areSame: boolean;
+		areSame = source && dataTrack == valueTrack;
+		if (!(data instanceof Error)) {
+			if (!areSame) {
+				setLfmState((state) => ({
+					...state,
+					track: data,
+					loading: false
+				}));
+			}
+		} else {
+			setLfmState((state) => ({
+				...state,
+				message: data.message,
+				loading: track.loading,
+				track: data
+			}));
+		}
+
 		return data;
 	}
 
 	createEffect(() => {
-		const track_ = track();
-		if (track_ instanceof Error) {
-			setLfmState((state) => ({
-				...state,
-				message: track_.message,
-				loading: track.loading,
-				track: track_
-			}));
-		} else {
-			if (track.state == "ready") {
-				setLfmState((state) => ({
-					...state,
-					track: track_,
-					loading: false
-				}));
-			}
-		}
 		let intervalRef: number;
 		if (updateInterval) {
 			intervalRef = setInterval(() => {

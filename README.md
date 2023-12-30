@@ -4,6 +4,9 @@
 
 # solid-lastfm-viewer
 
+> [!NOTE]
+> This repository is now part of a monorepo if you want to start developing on it got to the original monorepo [here](https://github.com/ZOASR/lastfm-viewer)
+
 <p align="center" >
 <a href="https://npm.io/package/solid-lastfm-viewer"><img src="https://img.shields.io/badge/maintained%20with-npm-cc00ff.svg?style=for-the-badge&logo=npm" ></a>
 <a href="https://www.npmjs.com/package/solid-lastfm-viewer" alt="solid-lastfm-viewer(npm)">
@@ -29,7 +32,7 @@ yarn add solid-lastfm-viewer
 pnpm add solid-lastfm-viewer
 ```
 
-Use it:
+## Use it:
 
 to start using the component you first need to get a last.fm API key from [here](https://www.last.fm/api), once you've done that just import the component and specify the username of the user you want to get scrobbling information from:
 
@@ -64,3 +67,5 @@ function App() {
 	);
 }
 ```
+
+> setting the `updateInterval` prop to a low number might subject your api key for termination, to avoid this just use a higher more reasonable number.

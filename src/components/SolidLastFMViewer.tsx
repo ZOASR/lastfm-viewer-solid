@@ -108,7 +108,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 												(
 													state.track
 														?.MBImages as Image[]
-												)[0].image
+												)[0].thumbnails[250]
 											}
 											alt="Album Cover"
 										/>

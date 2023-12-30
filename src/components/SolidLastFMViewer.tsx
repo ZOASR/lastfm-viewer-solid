@@ -3,12 +3,7 @@ import { Match, Show, Switch, createContext } from "solid-js";
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";
 
-import {
-	FaBrandsLastfm,
-	FaRegularUser,
-	FaSolidCompactDisc
-} from "solid-icons/fa";
-import { SiMusicbrainz } from "solid-icons/si";
+import { FaRegularUser, FaSolidCompactDisc } from "solid-icons/fa";
 
 import disc from "./disc.svg";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";

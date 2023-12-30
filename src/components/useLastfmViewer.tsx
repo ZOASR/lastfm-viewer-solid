@@ -3,7 +3,6 @@ import { createStore } from "solid-js/store";
 import { prominent } from "color.js";
 import { TrackInfo, getLatestTrack } from "@repo/utils/lastftm";
 import { Colors, Props } from "./SolidLastFMViewer";
-import { Track } from "@repo/utils/LFMtypes";
 
 export type lfmvHook = {
 	track: TrackInfo | Error | undefined;

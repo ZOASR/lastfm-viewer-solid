@@ -12,6 +12,7 @@ export default defineConfig({
 		...viteConfig.build,
 		lib: {
 			entry: path.resolve(__dirname, "index.ts"),
+			name: "solid-lastfm-viewer",
 			fileName: (format) => `index.${format}.js`
 		},
 		rollupOptions: {

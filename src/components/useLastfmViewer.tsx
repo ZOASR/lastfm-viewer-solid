@@ -53,11 +53,13 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 				track: track_
 			}));
 		} else {
-			setLfmState((state) => ({
-				...state,
-				track: track(),
-				loading: track.loading
-			}));
+			if (track.state == "ready") {
+				setLfmState((state) => ({
+					...state,
+					track: track_,
+					loading: false
+				}));
+			}
 		}
 		let intervalRef: number;
 		if (updateInterval) {

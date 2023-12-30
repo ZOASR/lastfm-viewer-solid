@@ -1,6 +1,6 @@
 import { useContext } from "solid-js";
 import { lfmContext } from "../SolidLastFMViewer";
-import styles from "./TrackProgressBar.module.css";
+import styles from "@repo/ui/TrackProgressBar.module.css";
 
 const msToMins = (ms: number) =>
 	Math.floor(ms / 1000 / 60).toLocaleString(undefined, {
@@ -15,7 +15,7 @@ const TrackProgressBar = () => {
 	const context = useContext(lfmContext);
 	return (
 		<>
-			<div class="my-0.5 flex w-full items-center justify-center">
+			<div class={styles.trackProgress}>
 				<span class={styles.nowplaying}> Now Playing</span>
 				<div class={styles.icon}>
 					<span
@@ -39,12 +39,12 @@ const TrackProgressBar = () => {
 				</div>
 			</div>
 			<div
-				class="flex items-center gap-1 whitespace-nowrap"
+				class={styles.bar}
 				style={{ color: context?.colors?.secondary }}
 			>
 				<span class="text-xs">00:00</span>
 				<progress
-					class="progress mx-auto w-10/12"
+					class="progress"
 					max={
 						context.track instanceof Error
 							? 0

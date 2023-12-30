@@ -26,10 +26,12 @@
     "typeRoots": [
       "./dist/index.d.ts"
     ],
+    "esModuleInterop": true,
   },
   "include": [
     "src",
-    "index.ts"
+    "index.ts",
+    "@repo/utils/lastfm.ts"
   ],
   "references": [
     {

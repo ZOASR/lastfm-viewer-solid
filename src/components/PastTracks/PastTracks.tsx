@@ -1,11 +1,15 @@
 import { For, useContext } from "solid-js";
-import { lfmContext } from "../SolidLastFMViewer";
-import styles from "./PastTracks.module.css";
+
 import { FaRegularUser } from "solid-icons/fa";
 import { IoCalendarClearOutline } from "solid-icons/io";
-import { Track } from "../MBtypes";
-import { TrackInfo } from "../lastfm";
+
+import { Track } from "@repo/utils/MBtypes";
+import { TrackInfo } from "@repo/utils/lastftm";
+
+import { lfmContext } from "../SolidLastFMViewer";
 import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
+
+import styles from "@repo/ui/PastTracks.module.css";
 
 const identity: (x: any) => any = (x: any) => x;
 function cloneArray(arr: any[]) {
@@ -18,14 +22,14 @@ const PastTracks = () => {
 	return (
 		<>
 			<div
-				class="mb-4 rounded-lg p-0.5 sm:p-4"
+				class={styles.pastTracks}
 				style={{
 					color: context.colors?.secondary,
 					background: context.colors?.accent + "22"
 				}}
 			>
 				<div
-					class="divider mx-auto mb-0 mt-0.5 w-1/2 rounded-lg p-2 text-xs sm:text-sm"
+					class={styles.pastTracks__title}
 					style={{
 						color: context.colors?.secondary,
 						background: context.colors?.accent + "22"
@@ -54,18 +58,15 @@ const PastTracks = () => {
 					>
 						{(track_) => {
 							return (
-								<div class={"text-[50%] sm:text-[75%]"}>
+								<div class={styles.pastTracks__track}>
 									<div class="divider m-0.5 h-min"></div>
-									<div
-										class={
-											"width-full flex items-center justify-between gap-4 overflow-x-scroll whitespace-nowrap " +
-											styles.scrollable
-										}
-									>
+									<div class={styles.scrollable}>
 										<a
 											href={track_.url}
 											target="_blank"
-											class="flex-1 text-ellipsis text-start font-black transition-all duration-150 hover:underline"
+											class={
+												styles.pastTracks__trackTitle
+											}
 											style={{
 												color: context.colors?.secondary
 											}}
@@ -73,7 +74,7 @@ const PastTracks = () => {
 											{track_.name}
 										</a>
 										<span
-											class="flex flex-1 items-center justify-start gap-1"
+											class={styles.scrollable__artist}
 											style={{
 												color: context.colors?.secondary
 											}}
@@ -82,7 +83,7 @@ const PastTracks = () => {
 											{track_.artist["#text"]}
 										</span>
 										<span
-											class="flex items-center gap-1"
+											class={styles.scrollable__date}
 											style={{
 												color: context.colors?.secondary
 											}}

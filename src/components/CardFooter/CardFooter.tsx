@@ -1,18 +1,16 @@
-import { Colors } from "../SolidLastFMViewer";
+import { lfmContext } from "../SolidLastFMViewer";
 import { FaBrandsLastfm, FaRegularUser } from "solid-icons/fa";
 import { SiMusicbrainz } from "solid-icons/si";
+import { useContext } from "solid-js";
 
-const CardFooter = ({
-	colors,
-	user
-}: {
-	colors: Colors | undefined;
-	user: string;
-}) => {
+import styles from "@repo/ui/CardFooter.module.css";
+
+const CardFooter = ({ user }: { user: string }) => {
+	const context = useContext(lfmContext);
 	return (
 		<div
-			style={{ color: colors?.secondary }}
-			class="mt-2 flex  w-full justify-between drop-shadow-lg filter"
+			style={{ color: context.colors?.secondary }}
+			class={styles.cardFooter}
 		>
 			<span class="flex gap-2">
 				<a
@@ -26,10 +24,7 @@ const CardFooter = ({
 					<SiMusicbrainz />
 				</a>
 			</span>
-			<a
-				class=" flex items-center gap-2 text-xs"
-				href={`https://www.last.fm/user/${user}`}
-			>
+			<a class={styles.profile} href={`https://www.last.fm/user/${user}`}>
 				<FaRegularUser />
 				{user}
 			</a>

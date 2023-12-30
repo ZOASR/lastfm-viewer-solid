@@ -11,14 +11,15 @@ import {
 import { SiMusicbrainz } from "solid-icons/si";
 
 import disc from "./disc.svg";
-import "../index.css";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
-import { LastFmImage } from "./LFMtypes";
-import { Image } from "./MBtypes";
+import { LastFmImage } from "@repo/utils/LFMtypes";
+import { Image } from "@repo/utils/MBtypes";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
 
-import styles from "./SolidLastFMViewer.module.css";
+import styles from "@repo/ui/LastFMViewer.module.css";
+import "@repo/ui";
+import CardFooter from "./CardFooter/CardFooter";
 
 export interface Colors {
 	primary: string | undefined;
@@ -65,10 +66,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 			{/* preconnects */}
 			<lfmContext.Provider value={state}>
 				<div
-					class={
-						styles.lfmvCard +
-						" glass relative mx-auto box-border flex h-full w-full flex-col rounded-lg p-4 shadow-xl ring-2 ring-slate-950/5"
-					}
+					class={styles.lfmvCard}
 					style={{ background: state.colors?.primary }}
 				>
 					{state.track instanceof Error ? (
@@ -78,7 +76,6 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 					) : (
 						<>
 							<figure
-								class="mx-auto mb-2 h-auto overflow-hidden rounded-lg border-inherit"
 								style={{
 									"box-shadow": `0 0 20px ${state.colors?.secondary}99`
 								}}
@@ -101,7 +98,6 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								>
 									<Match when={state.track?.lastfmImages}>
 										<img
-											class="block h-full w-full overflow-hidden object-cover align-middle"
 											src={
 												(
 													state.track
@@ -113,7 +109,6 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									</Match>
 									<Match when={state.track?.MBImages}>
 										<img
-											class="block h-full w-full overflow-hidden object-cover align-middle"
 											src={
 												(
 													state.track
@@ -126,7 +121,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								</Switch>
 							</figure>
 
-							<div class="flex h-min flex-col gap-1 drop-shadow-lg filter">
+							<div class={styles.cardBody}>
 								<LoadingSkeleton
 									class="mx-auto h-[40px] w-[90%]"
 									fallback={null}
@@ -136,11 +131,11 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									)}
 								</LoadingSkeleton>
 								<h1
-									class="shadow:lg mx-auto mt-1 text-center text-xs font-bold sm:text-base"
+									class={styles.trackTitle}
 									style={{ color: state.colors?.secondary }}
 								>
 									<LoadingSkeleton
-										class="mx-auto h-3 w-1/2"
+										class={styles.titleSkeleton}
 										fallback="Track title not available"
 									>
 										{state.track?.trackName}
@@ -151,22 +146,22 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									class="flex flex-col gap-2 text-xs"
 								>
 									<LoadingSkeleton
-										class="mx-auto h-3 w-1/2"
+										class={styles.titleSkeleton}
 										fallback="Artist name not available"
 									>
 										{
-											<span class="flex items-center justify-center gap-1">
+											<span class={styles.infoSpan}>
 												<FaRegularUser />
 												{state.track?.artistName}
 											</span>
 										}
 									</LoadingSkeleton>
 									<LoadingSkeleton
-										class="mx-auto h-3 w-1/2"
+										class={styles.titleSkeleton}
 										fallback="Album name not available"
 									>
 										{state.track?.albumTitle ? (
-											<span class="flex items-center justify-center gap-1">
+											<span class={styles.infoSpan}>
 												<FaSolidCompactDisc />
 												{state.track?.albumTitle}
 											</span>
@@ -174,33 +169,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									</LoadingSkeleton>
 								</div>
 								<PastTracks />
-								<div
-									style={{ color: state.colors?.secondary }}
-									class="mt-2 flex  w-full justify-between drop-shadow-lg filter"
-								>
-									<span class="flex gap-2">
-										<a
-											href="https://www.last.fm/"
-											target="_blank"
-											class="h-min self-center "
-										>
-											<FaBrandsLastfm />
-										</a>
-										<a
-											href="https://musicbrainz.org/"
-											target="_blank"
-										>
-											<SiMusicbrainz />
-										</a>
-									</span>
-									<a
-										class=" flex items-center gap-2 text-xs"
-										href={`https://www.last.fm/user/${user}`}
-									>
-										<FaRegularUser />
-										{user}
-									</a>
-								</div>
+								<CardFooter user={user} />
 							</div>
 						</>
 					)}

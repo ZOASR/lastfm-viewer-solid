@@ -1,4 +1,4 @@
-import { Match, Show, Switch, createContext } from "solid-js";
+import { Show, createContext } from "solid-js";
 
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";
@@ -7,8 +7,6 @@ import { FaRegularUser, FaSolidCompactDisc } from "solid-icons/fa";
 
 import disc from "./disc.svg";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
-import { LastFmImage } from "@repo/utils/LFMtypes";
-import { Image } from "@repo/utils/MBtypes";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
 
@@ -32,9 +30,8 @@ export const lfmContext = createContext<lfmvHook>({
 		trackName: "",
 		artistName: "",
 		albumTitle: "",
-		MBImages: undefined,
-		lastfmImages: undefined,
 		nowplaying: false,
+		imageUrl: "",
 		pastTracks: [],
 		duration: 0
 	},
@@ -75,7 +72,8 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 									"box-shadow": `0 0 20px ${state.colors?.secondary}99`
 								}}
 							>
-								<Switch
+								<Show
+									when={state.track?.imageUrl}
 									fallback={
 										<LoadingSkeleton
 											class="mx-auto h-[300px] w-[300px]"
@@ -91,29 +89,11 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 										</LoadingSkeleton>
 									}
 								>
-									<Match when={state.track?.lastfmImages}>
-										<img
-											src={
-												(
-													state.track
-														?.lastfmImages as LastFmImage[]
-												)[3]["#text"]
-											}
-											alt="Album Cover"
-										/>
-									</Match>
-									<Match when={state.track?.MBImages}>
-										<img
-											src={
-												(
-													state.track
-														?.MBImages as Image[]
-												)[0].thumbnails[250]
-											}
-											alt="Album Cover"
-										/>
-									</Match>
-								</Switch>
+									<img
+										src={state.track?.imageUrl}
+										alt="Default album cover thumbnail"
+									/>
+								</Show>
 							</figure>
 
 							<div class={styles.cardBody}>

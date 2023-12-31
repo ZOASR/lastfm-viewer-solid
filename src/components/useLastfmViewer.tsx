@@ -27,8 +27,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 			trackName: "",
 			artistName: "",
 			albumTitle: "",
-			MBImages: undefined,
-			lastfmImages: undefined,
+			imageUrl: undefined,
 			nowplaying: false,
 			pastTracks: [],
 			duration: 0

@@ -14,11 +14,6 @@ import styles from "@repo/ui/LastFMViewer.module.css";
 import "@repo/ui";
 import CardFooter from "./CardFooter/CardFooter";
 
-export interface Colors {
-	primary: string | undefined;
-	secondary: string | undefined;
-	accent: string | undefined;
-}
 export interface Props {
 	api_key: string;
 	user: string;
@@ -32,6 +27,11 @@ export const lfmContext = createContext<lfmvHook>({
 		albumTitle: "",
 		nowplaying: false,
 		imageUrl: "",
+		colors: {
+			primary: "",
+			secondary: "",
+			accent: ""
+		},
 		pastTracks: [],
 		duration: 0
 	},
@@ -69,7 +69,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 						<>
 							<figure
 								style={{
-									"box-shadow": `0 0 20px ${state.colors?.secondary}99`
+									"box-shadow": `0 0 20px ${state.colors?.secondary}`
 								}}
 							>
 								<Show

@@ -39,7 +39,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "color.js": "^1.2.0",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "solid-icons": "^1.1.0",

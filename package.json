@@ -11,6 +11,10 @@
     "scrobbling",
     "solid"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZOASR/solid-lastfm-viewer.git"
+  },
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",

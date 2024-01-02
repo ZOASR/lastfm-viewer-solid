@@ -19,7 +19,7 @@ export default defineConfig({
 			external: ["solid-js"],
 			output: {
 				globals: {
-					solid: "solidJs"
+					solidJs: "solidJs"
 				}
 			}
 		}

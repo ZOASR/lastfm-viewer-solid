@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Bug Fixes
+
+- Wrong solidJs config in vite
+- Wrong solidJs import
+
+### Miscellaneous Tasks
+
+- Renamed package
+
+### Dev
+
+- Added package git repo link
+
+### Update
+
+- V2.0.1
+
 ## [2.0.1] - 2024-01-02
 
 ### Dev

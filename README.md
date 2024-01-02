@@ -1,5 +1,5 @@
 <p>
-  <img width="100%" src="https://assets.solidjs.com/banner?type=solid-lastfm-viewer&background=tiles&project=%20" alt="solid-lastfm-viewer">
+  <img width="100%" src="https://assets.solidjs.com/banner?type=@lastfm-viewer/solid&background=tiles&project=%20" alt="@lastfm-viewer/solid">
 </p>
 
 # @lastfm-viewer/solid
@@ -8,16 +8,16 @@
 > This repository is now part of a monorepo if you want to start developing on it go to the original monorepo [here](https://github.com/ZOASR/lastfm-viewer)
 
 <p align="center" >
-<a href="https://npm.io/package/solid-lastfm-viewer"><img src="https://img.shields.io/badge/maintained%20with-npm-cc00ff.svg?style=for-the-badge&logo=npm" ></a>
-<a href="https://www.npmjs.com/package/solid-lastfm-viewer" alt="solid-lastfm-viewer(npm)">
-<img src="https://img.shields.io/npm/dt/solid-lastfm-viewer?style=for-the-badge&logo=npm&logoColor=red&label=solid-lastfm-viewer" /></a>
+
+<a href="https://www.npmjs.com/package/@lastfm-viewer/solid" alt="@lastfm-viewer/solid(npm)">
+<img src="https://img.shields.io/npm/dt/@lastfm-viewer/solid?style=for-the-badge&logo=npm&logoColor=red&label=@lastfm-viewer/solid" /></a>
 </p>
 
 A solidjs component to view recent scrobbles for a last.fm user
 
 <p align="center">
-  <img src="https://github.com/ZOASR/solid-lastfm-viewer/blob/main/images/Preview_1.png" style="border-radius: 10px"/>
-  <img src="https://github.com/ZOASR/solid-lastfm-viewer/blob/main/images/Preview_2.png" style="border-radius: 10px"/>
+  <img src="https://github.com/ZOASR/lastfm-viewer-solid/blob/main/images/Preview_1.png" style="border-radius: 10px"/>
+  <img src="https://github.com/ZOASR/lastfm-viewer-solid/blob/main/images/Preview_2.png" style="border-radius: 10px"/>
 </p>
 
 ## Quick start

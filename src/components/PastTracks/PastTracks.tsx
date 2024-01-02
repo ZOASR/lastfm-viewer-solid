@@ -4,7 +4,7 @@ import { FaRegularUser } from "solid-icons/fa";
 import { IoCalendarClearOutline } from "solid-icons/io";
 
 import { Track } from "@repo/utils/MBtypes";
-import { TrackInfo } from "@repo/utils/lastftm";
+import { TrackInfo } from "@repo/utils/lastfm";
 
 import { lfmContext } from "../SolidLastFMViewer";
 import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";

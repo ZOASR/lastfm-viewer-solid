@@ -13,7 +13,7 @@
 <img src="https://img.shields.io/npm/dt/solid-lastfm-viewer?style=for-the-badge&logo=npm&logoColor=red&label=solid-lastfm-viewer" /></a>
 </p>
 
-A solidjs component to view recent scrobbles for a last.fm user **(This is a sister project to <a href="https://github.com/ZOASR/react-lastfm-viewer">@react-lastfm-viewer</a>)**
+A solidjs component to view recent scrobbles for a last.fm user
 
 <p align="center">
   <img src="https://github.com/ZOASR/solid-lastfm-viewer/blob/main/images/Preview_1.png" style="border-radius: 10px"/>
@@ -25,11 +25,11 @@ A solidjs component to view recent scrobbles for a last.fm user **(This is a sis
 Install it:
 
 ```bash
-npm i solid-lastfm-viewer
+npm i @lastfm-viewer/solid
 # or
-yarn add solid-lastfm-viewer
+yarn add @lastfm-viewer/solid
 # or
-pnpm add solid-lastfm-viewer
+pnpm add @lastfm-viewer/solid
 ```
 
 ## Use it:
@@ -39,7 +39,7 @@ to start using the component you first need to get a last.fm API key from [here]
 > Please note that some users set their profile stats to private, so not every user is applicable, if you're using this component on your personal account just set your "Recent listening" stats to public [here](https://www.last.fm/settings/privacy)
 
 ```tsx
-import SolidLastFMViewer from "solid-lastfm-viewer";
+import SolidLastFMViewer from "@lastfm-viewer/solid";
 
 function App() {
 	return (
@@ -53,7 +53,7 @@ function App() {
 if you want to frequently fetch the user's listening info just specify the `updateInterval` prop. (milliseconds) (it takes a number that determines the update interval):
 
 ```tsx
-import SolidLastFMViewer from "solid-lastfm-viewer";
+import SolidLastFMViewer from "@lastfm-viewer/solid";
 
 function App() {
 	return (

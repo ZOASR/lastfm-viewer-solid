@@ -1,5 +1,5 @@
 {
-  "name": "solid-lastfm-viewer",
+  "name": "@lastfm-viewer/solid",
   "private": false,
   "version": "2.0.1",
   "description": "A solidjs component to view recent scrobbles for a last.fm user",

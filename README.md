@@ -2,7 +2,7 @@
   <img width="100%" src="https://assets.solidjs.com/banner?type=solid-lastfm-viewer&background=tiles&project=%20" alt="solid-lastfm-viewer">
 </p>
 
-# solid-lastfm-viewer
+# @lastfm-viewer/solid
 
 > [!NOTE]
 > This repository is now part of a monorepo if you want to start developing on it go to the original monorepo [here](https://github.com/ZOASR/lastfm-viewer)

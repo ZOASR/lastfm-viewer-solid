@@ -30,7 +30,6 @@ jobs:
 
       # use release body in the same job
       - name: Upload the binary releases
-        uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}

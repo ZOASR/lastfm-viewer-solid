@@ -69,7 +69,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 						<>
 							<figure
 								style={{
-									"box-shadow": `0 0 20px ${state.colors?.secondary}`
+									"box-shadow": `0 0 20px rgb( from ${state.colors?.secondary} r g b / 25%)`
 								}}
 							>
 								<Show

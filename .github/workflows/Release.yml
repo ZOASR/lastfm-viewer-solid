@@ -31,6 +31,7 @@ jobs:
       # use release body in the same job
       - name: Upload the binary releases
         with:
+          uses: svenstaro/upload-release-action@v2
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           body: ${{ steps.git-cliff.outputs.content }}

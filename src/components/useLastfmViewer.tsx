@@ -1,6 +1,7 @@
 import { createEffect, createResource, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
-import { Colors, TrackInfo, getLatestTrack } from "@repo/utils/lastfm";
+import { getLatestTrack } from "@repo/utils/lastfm";
+import { Colors, TrackInfo } from "@repo/utils/types";
 import { Props } from "./SolidLastFMViewer";
 
 export type lfmvHook = {

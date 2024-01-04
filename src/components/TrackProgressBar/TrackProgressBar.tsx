@@ -1,15 +1,8 @@
-import { useContext } from "solid-js";
+import { Match, Switch, useContext } from "solid-js";
 import { lfmContext } from "../SolidLastFMViewer";
 import styles from "@lastfm-viewer/ui/TrackProgressBar.module.css";
-
-const msToMins = (ms: number) =>
-	Math.floor(ms / 1000 / 60).toLocaleString(undefined, {
-		maximumSignificantDigits: 2
-	});
-const msToSecs = (ms: number) =>
-	Math.floor((ms / 1000) % 60).toLocaleString(undefined, {
-		maximumSignificantDigits: 2
-	});
+import { TrackInfo } from "@lastfm-viewer/utils/types";
+import { msToMins, msToSecs } from "@lastfm-viewer/utils/utils";
 
 const TrackProgressBar = () => {
 	const context = useContext(lfmContext);
@@ -54,17 +47,26 @@ const TrackProgressBar = () => {
 					}
 				></progress>
 				<span class="text-xs">
-					{context.track instanceof Error
-						? " "
-						: context.track
-							? (context.track?.duration as number) > 0
-								? `${msToMins(
-										context.track?.duration as number
-									)}:${msToSecs(
-										context.track?.duration as number
-									)}`
-								: "--:--"
-							: "--:--"}
+					<Switch fallback={"--:--"}>
+						<Match when={context.track instanceof Error}>
+							{"--:--"}
+						</Match>
+						<Match
+							when={
+								!(context.track instanceof Error) &&
+								context.track &&
+								context.track?.duration > 0
+							}
+						>
+							{msToMins(
+								(context.track as TrackInfo)?.duration as number
+							)}
+							{":"}
+							{msToSecs(
+								(context.track as TrackInfo)?.duration as number
+							)}
+						</Match>
+					</Switch>
 				</span>
 			</div>
 		</>

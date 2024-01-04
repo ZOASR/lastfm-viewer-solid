@@ -1,6 +1,6 @@
 import { useContext } from "solid-js";
 import { lfmContext } from "../SolidLastFMViewer";
-import styles from "@repo/ui/TrackProgressBar.module.css";
+import styles from "@lastfm-viewer/ui/TrackProgressBar.module.css";
 
 const msToMins = (ms: number) =>
 	Math.floor(ms / 1000 / 60).toLocaleString(undefined, {

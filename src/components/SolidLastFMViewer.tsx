@@ -10,8 +10,8 @@ import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
 
-import styles from "@repo/ui/LastFMViewer.module.css";
-import "@repo/ui";
+import styles from "@lastfm-viewer/ui/LastFMViewer.module.css";
+import "@lastfm-viewer/ui";
 import CardFooter from "./CardFooter/CardFooter";
 
 export interface Props {

@@ -1,7 +1,7 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
 
-import "@repo/ui";
+import "@lastfm-viewer/ui";
 
 import App from "./App";
 

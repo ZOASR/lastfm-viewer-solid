@@ -49,9 +49,9 @@
     "typescript": "^5.0.2",
     "vite": "^5.0.10",
     "vite-plugin-solid": "^2.7.0",
-    "@repo/vite-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
-    "@repo/utils": "workspace:*",
-    "@repo/ui": "workspace:*"
+    "@lastfm-viewer/vite-config": "workspace:*",
+    "@lastfm-viewer/tailwind-config": "workspace:*",
+    "@lastfm-viewer/utils": "workspace:*",
+    "@lastfm-viewer/ui": "workspace:*"
   }
 }

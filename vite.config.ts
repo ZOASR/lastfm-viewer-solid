@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 
-import viteConfig from "@repo/vite-config/index.config";
+import viteConfig from "@lastfm-viewer/vite-config/index.config";
 
 import path from "node:path";
 

@@ -3,14 +3,14 @@ import { For, useContext } from "solid-js";
 import { FaRegularUser } from "solid-icons/fa";
 import { IoCalendarClearOutline } from "solid-icons/io";
 
-import { cloneArray } from "@repo/utils/utils";
-import { Track } from "@repo/utils/MBtypes";
-import { TrackInfo } from "@repo/utils/types";
+import { cloneArray } from "@lastfm-viewer/utils/utils";
+import { Track } from "@lastfm-viewer/utils/MBtypes";
+import { TrackInfo } from "@lastfm-viewer/utils/types";
 
 import { lfmContext } from "../SolidLastFMViewer";
 import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
-import styles from "@repo/ui/PastTracks.module.css";
+import styles from "@lastfm-viewer/ui/PastTracks.module.css";
 
 const PastTracks = () => {
 	const context = useContext(lfmContext);

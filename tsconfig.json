@@ -31,7 +31,7 @@
   "include": [
     "src",
     "index.ts",
-    "@repo/utils/lastfm.ts"
+    "@lastfm-viewer/utils/lastfm.ts"
   ],
   "references": [
     {

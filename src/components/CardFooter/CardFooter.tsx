@@ -3,7 +3,7 @@ import { FaBrandsLastfm, FaRegularUser } from "solid-icons/fa";
 import { SiMusicbrainz } from "solid-icons/si";
 import { useContext } from "solid-js";
 
-import styles from "@repo/ui/CardFooter.module.css";
+import styles from "@lastfm-viewer/ui/CardFooter.module.css";
 
 const CardFooter = ({ user }: { user: string }) => {
 	const context = useContext(lfmContext);

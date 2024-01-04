@@ -3,8 +3,7 @@ import { For, useContext } from "solid-js";
 import { FaRegularUser } from "solid-icons/fa";
 import { IoCalendarClearOutline } from "solid-icons/io";
 
-import { cloneArray } from "@lastfm-viewer/utils/utils";
-import { Track } from "@lastfm-viewer/utils/MBtypes";
+import { Track } from "@lastfm-viewer/utils/LFMtypes";
 import { TrackInfo } from "@lastfm-viewer/utils/types";
 
 import { lfmContext } from "../SolidLastFMViewer";
@@ -36,19 +35,9 @@ const PastTracks = () => {
 				<LoadingSkeleton class="h-[200px]" fallback={<div></div>}>
 					<For
 						each={
-							context.track instanceof Error
-								? []
-								: (context.track as TrackInfo)?.pastTracks
-									? cloneArray(
-											context.track?.pastTracks as any[]
-										).splice(
-											1,
-											(
-												context.track
-													?.pastTracks as Track[]
-											).length
-										)
-									: []
+							(context.track as TrackInfo)?.pastTracks?.filter(
+								(_, index) => index !== 0
+							) as Track[]
 						}
 						fallback={<div>Loading...</div>}
 					>

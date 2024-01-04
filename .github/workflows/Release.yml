@@ -1,9 +1,5 @@
 on:
   push:
-    # Sequence of patterns matched against refs/heads
-    branches:    
-      - main
-      - 'releases/**'
     # Sequence of patterns matched against refs/tags
     tags:        
       - v*
@@ -32,7 +28,7 @@ jobs:
       - name: Upload the binary releases
         uses: svenstaro/upload-release-action@v2
         with:
-          file: binary_release.zip
+          file: CHANGELOG.md
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           body: ${{ steps.git-cliff.outputs.content }}

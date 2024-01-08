@@ -61,6 +61,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 				<div
 					class={styles.lfmvCard}
 					style={{ background: state.colors?.primary }}
+					data-theme="dark"
 				>
 					{state.track instanceof Error ? (
 						<Show when={state.message}>

@@ -1,6 +1,9 @@
 on:
   push:
+<<<<<<< HEAD
     # Sequence of patterns matched against refs/tags
+=======
+>>>>>>> 0112749e8e7fbcb74ff7532a2decc700866cc8bb
     tags:        
       - v*
 jobs:

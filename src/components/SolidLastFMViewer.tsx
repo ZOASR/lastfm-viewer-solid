@@ -30,7 +30,8 @@ export const lfmContext = createContext<lfmvHook>({
 		colors: {
 			primary: "",
 			secondary: "",
-			accent: ""
+			accent: "",
+			coverShadowColor: ""
 		},
 		pastTracks: [],
 		duration: 0
@@ -69,7 +70,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 						<>
 							<figure
 								style={{
-									"box-shadow": `0 0 20px rgb( from ${state.colors?.secondary} r g b / 25%)`
+									"box-shadow": `0 0 20px ${state.colors?.coverShadowColor}`
 								}}
 							>
 								<Show

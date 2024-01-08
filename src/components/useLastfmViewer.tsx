@@ -32,7 +32,8 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 			colors: {
 				primary: "",
 				secondary: "",
-				accent: ""
+				accent: "",
+				coverShadowColor: ""
 			},
 			pastTracks: [],
 			duration: 0

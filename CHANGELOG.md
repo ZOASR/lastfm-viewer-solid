@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+### Bug Fixes
+
+- Fixed wrong number formatting when displaying track length
+
+### Refactor
+
+- Used a simpler array method to display past tracks
+
+### Styling
+
+- Changed album cover shadow to hsla color for better browser compatibility
+
+## [2.1.5] - 2024-01-04
+
 ### Dev
 
 - Moved all utility functions and types to the util package
@@ -12,6 +26,7 @@ All notable changes to this project will be documented in this file.
 ### Update
 
 - V2.1.3
+- V2.1.5
 
 ## [2.1.3] - 2024-01-03
 

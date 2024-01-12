@@ -30,6 +30,8 @@ npm i @lastfm-viewer/solid
 yarn add @lastfm-viewer/solid
 # or
 pnpm add @lastfm-viewer/solid
+# or
+bun i @lastfm-viewer/solid
 ```
 
 ## Use it:

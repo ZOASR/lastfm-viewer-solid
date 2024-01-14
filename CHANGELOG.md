@@ -4,9 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+### Bug Fixes
+
+- Fixed some of daisyui themes are applied to the whole page
+
+### Documentation
+
+- Modified package git repo url
+- Added bun as an installer in README
+
+## [2.2.1] - 2024-01-08
+
 ### Refactor
 
 - Scoped daisyui styles to avoid unwanted conflicts
+
+### Update
+
+- V2.2.1
 
 ## [2.2.0] - 2024-01-08
 

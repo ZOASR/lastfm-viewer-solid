@@ -6,12 +6,22 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- Converted all http links to https
+
+## [2.2.2] - 2024-01-14
+
+### Bug Fixes
+
 - Fixed some of daisyui themes are applied to the whole page
 
 ### Documentation
 
 - Modified package git repo url
 - Added bun as an installer in README
+
+### Update
+
+- V2.2.2
 
 ## [2.2.1] - 2024-01-08
 

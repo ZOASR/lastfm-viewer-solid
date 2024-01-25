@@ -119,7 +119,7 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 								</h1>
 								<div
 									style={{ color: state.colors?.secondary }}
-									class="flex flex-col gap-2 text-xs"
+									class="flex flex-col gap-2"
 								>
 									<LoadingSkeleton
 										class={styles.titleSkeleton}

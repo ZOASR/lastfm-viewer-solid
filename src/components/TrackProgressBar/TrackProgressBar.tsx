@@ -35,7 +35,7 @@ const TrackProgressBar = () => {
 				class={styles.bar}
 				style={{ color: context?.colors?.secondary }}
 			>
-				<span class="text-xs">00:00</span>
+				<span>00:00</span>
 				<progress
 					class="progress"
 					max={
@@ -46,7 +46,7 @@ const TrackProgressBar = () => {
 								: 0
 					}
 				></progress>
-				<span class="text-xs">
+				<span>
 					<Switch fallback={"--:--"}>
 						<Match when={context.track instanceof Error}>
 							{"--:--"}

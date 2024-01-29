@@ -23,16 +23,16 @@ const PastTracks = () => {
 					background: context.colors?.accent
 				}}
 			>
-				<div
-					class={styles.pastTracks__title}
-					style={{
-						color: context.colors?.secondary,
-						background: `rgb(from ${context.colors?.primary} r g b / 50%)`
-					}}
-				>
-					Past tracks
-				</div>
 				<LoadingSkeleton class="h-[200px]" fallback={<div></div>}>
+					<div
+						class={styles.pastTracks__title}
+						style={{
+							color: context.colors?.secondary,
+							background: context.colors?.primary
+						}}
+					>
+						Past tracks
+					</div>
 					<For
 						each={
 							(context.track as TrackInfo)?.pastTracks?.filter(

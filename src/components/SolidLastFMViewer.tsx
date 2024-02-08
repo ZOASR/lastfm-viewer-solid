@@ -18,6 +18,7 @@ export interface Props {
 	api_key: string;
 	user: string;
 	updateInterval?: number;
+	mode?: "dev" | "prod";
 }
 
 export const lfmContext = createContext<lfmvHook>({
@@ -41,7 +42,12 @@ export const lfmContext = createContext<lfmvHook>({
 	message: ""
 });
 
-const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
+const SolidLastFMViewer = ({
+	api_key,
+	user,
+	updateInterval,
+	mode = "dev"
+}: Props) => {
 	const state: lfmvHook = useLastfmViewer({
 		api_key,
 		user,
@@ -64,40 +70,44 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 				>
 					{state.track instanceof Error ? (
 						<Show when={state.message}>
-							{<ErrorView message={state.message as string} />}
+							{
+								<ErrorView
+									mode={mode}
+									message={state.message as string}
+								/>
+							}
 						</Show>
 					) : (
 						<>
-							<figure
-								style={{
-									"box-shadow": `0 0 20px ${state.colors?.coverShadowColor}`
-								}}
-							>
-								<Show
-									when={state.track?.imageUrl}
-									fallback={
-										<LoadingSkeleton
-											class="mx-auto h-[300px] w-[300px]"
-											fallback={
-												<img
-													src={disc}
-													class=""
-													alt="Default album cover thumbnail"
-												/>
-											}
-										>
-											{null}
-										</LoadingSkeleton>
-									}
+							<div>
+								<figure
+									style={{
+										"box-shadow": `0 0 20px ${state.colors?.coverShadowColor}`
+									}}
 								>
-									<img
-										src={state.track?.imageUrl}
-										alt="Default album cover thumbnail"
-									/>
-								</Show>
-							</figure>
-
-							<div class={styles.cardBody}>
+									<Show
+										when={state.track?.imageUrl}
+										fallback={
+											<LoadingSkeleton
+												class="mx-auto h-[300px] w-[300px]"
+												fallback={
+													<img
+														src={disc}
+														class=""
+														alt="Default album cover thumbnail"
+													/>
+												}
+											>
+												{null}
+											</LoadingSkeleton>
+										}
+									>
+										<img
+											src={state.track?.imageUrl}
+											alt="Default album cover thumbnail"
+										/>
+									</Show>
+								</figure>
 								<LoadingSkeleton
 									class="mx-auto h-[40px] w-[90%]"
 									fallback={null}
@@ -144,6 +154,9 @@ const SolidLastFMViewer = ({ api_key, user, updateInterval }: Props) => {
 										) : null}
 									</LoadingSkeleton>
 								</div>
+							</div>
+
+							<div class={styles.cardBody}>
 								<PastTracks />
 								<CardFooter user={user} />
 							</div>

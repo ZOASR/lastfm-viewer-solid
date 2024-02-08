@@ -16,7 +16,7 @@ export default defineConfig({
 			fileName: (format) => `index.${format}.js`
 		},
 		rollupOptions: {
-			external: ["solid-js"],
+			external: ["solidJs"],
 			output: {
 				globals: {
 					solidJs: "solidJs"

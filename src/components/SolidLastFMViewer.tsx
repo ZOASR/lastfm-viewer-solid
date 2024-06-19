@@ -3,7 +3,7 @@ import { Show, createContext } from "solid-js";
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";
 
-import { FaRegularUser, FaSolidCompactDisc } from "solid-icons/fa";
+import { Icon } from "@iconify-icon/solid";
 
 import disc from "./disc.svg";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
@@ -137,7 +137,7 @@ const SolidLastFMViewer = ({
 									>
 										{
 											<span class={styles.infoSpan}>
-												<FaRegularUser />
+												<Icon icon="fa6-regular:user" />
 												{state.track?.artistName}
 											</span>
 										}
@@ -148,7 +148,7 @@ const SolidLastFMViewer = ({
 									>
 										{state.track?.albumTitle ? (
 											<span class={styles.infoSpan}>
-												<FaSolidCompactDisc />
+												<Icon icon="fa6-solid:compact-disc" />
 												{state.track?.albumTitle}
 											</span>
 										) : null}

@@ -1,7 +1,6 @@
 import { For, useContext } from "solid-js";
 
-import { FaRegularUser } from "solid-icons/fa";
-import { IoCalendarClearOutline } from "solid-icons/io";
+import { Icon } from "@iconify-icon/solid";
 
 import { Track } from "@lastfm-viewer/utils/LFMtypes";
 import { TrackInfo } from "@lastfm-viewer/utils/types";
@@ -64,7 +63,7 @@ const PastTracks = () => {
 												color: context.colors?.secondary
 											}}
 										>
-											<FaRegularUser />
+											<Icon icon="fa6-regular:user" />
 											{track_.artist["#text"]}
 										</span>
 										<span
@@ -73,7 +72,7 @@ const PastTracks = () => {
 												color: context.colors?.secondary
 											}}
 										>
-											<IoCalendarClearOutline />
+											<Icon icon="ion:calendar-clear-outline" />
 											{track_.date["#text"]}
 										</span>
 									</div>

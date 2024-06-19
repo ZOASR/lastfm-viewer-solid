@@ -1,6 +1,5 @@
 import { lfmContext } from "../SolidLastFMViewer";
-import { FaBrandsLastfm, FaRegularUser } from "solid-icons/fa";
-import { SiMusicbrainz } from "solid-icons/si";
+import { Icon } from "@iconify-icon/solid";
 import { useContext } from "solid-js";
 
 import styles from "@lastfm-viewer/ui/CardFooter.module.css";
@@ -16,16 +15,16 @@ const CardFooter = ({ user }: { user: string }) => {
 				<a
 					href="https://www.last.fm/"
 					target="_blank"
-					class="h-min self-center "
+					class="h-min self-center"
 				>
-					<FaBrandsLastfm />
+					<Icon icon="fa6-brands:square-lastfm" />
 				</a>
 				<a href="https://musicbrainz.org/" target="_blank">
-					<SiMusicbrainz />
+					<Icon icon="simple-icons:musicbrainz" />
 				</a>
 			</span>
 			<a class={styles.profile} href={`https://www.last.fm/user/${user}`}>
-				<FaRegularUser />
+				<Icon icon="fa6-regular:user" />
 				{user}
 			</a>
 		</div>

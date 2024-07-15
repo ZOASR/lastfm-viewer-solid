@@ -1,7 +1,7 @@
 {
   "name": "@lastfm-viewer/solid",
   "private": false,
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "A solidjs component to view recent scrobbles for a last.fm user",
   "homepage": "https://lastfm-viewer.vercel.app/",
   "license": "GPL-3.0",

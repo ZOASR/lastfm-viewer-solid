@@ -91,11 +91,24 @@ const SolidLastFMViewer = ({
 											<LoadingSkeleton
 												class="mx-auto h-[300px] w-[300px]"
 												fallback={
-													<img
-														src={disc}
-														class=""
-														alt="Default album cover thumbnail"
-													/>
+													// <img
+													// 	src={disc}
+													// 	class=""
+													// 	alt="Default album cover thumbnail"
+													// />
+													<div
+														classList={{
+															"!animate-spin-slow":
+																state.track
+																	?.nowplaying
+														}}
+														class="h-max"
+													>
+														<Icon
+															icon="bi:disc-fill"
+															class="m-auto text-[clamp(10rem,_10vw,_20rem)] *:h-full *:w-full"
+														/>
+													</div>
 												}
 											>
 												{null}

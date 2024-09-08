@@ -53,8 +53,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 			: "";
 		const valueTrack: string | undefined =
 			value && !(value instanceof Error) ? value.trackName : "";
-		let areSame: boolean;
-		areSame = source && dataTrack == valueTrack;
+		const areSame = source && dataTrack == valueTrack;
 		if (!(data instanceof Error)) {
 			if (!areSame) {
 				setLfmState((state) => ({

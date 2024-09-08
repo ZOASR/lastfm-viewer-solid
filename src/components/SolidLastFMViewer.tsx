@@ -5,7 +5,6 @@ import PastTracks from "./PastTracks/PastTracks";
 
 import { Icon } from "@iconify-icon/solid";
 
-import disc from "./disc.svg";
 import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
@@ -82,7 +81,7 @@ const SolidLastFMViewer = ({
 							<div>
 								<figure
 									style={{
-										"box-shadow": `0 0 20px ${state.colors?.coverShadowColor}`
+										filter: `drop-shadow(0 0 20px ${state.colors?.coverShadowColor} )`
 									}}
 								>
 									<Show
@@ -117,7 +116,7 @@ const SolidLastFMViewer = ({
 									>
 										<img
 											src={state.track?.imageUrl}
-											alt="Default album cover thumbnail"
+											alt="Album cover thumbnail"
 										/>
 									</Show>
 								</figure>

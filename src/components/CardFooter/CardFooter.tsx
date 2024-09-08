@@ -11,7 +11,7 @@ const CardFooter = ({ user }: { user: string }) => {
 			style={{ color: context.colors?.secondary }}
 			class={styles.cardFooter}
 		>
-			<span class="flex gap-2">
+			<span class="flex items-center gap-2">
 				<a
 					href="https://www.last.fm/"
 					target="_blank"
@@ -23,7 +23,14 @@ const CardFooter = ({ user }: { user: string }) => {
 					<Icon icon="simple-icons:musicbrainz" />
 				</a>
 			</span>
-			<a class={styles.profile} href={`https://www.last.fm/user/${user}`}>
+			<a
+				class={styles.profile}
+				href={`https://www.last.fm/user/${user}`}
+				style={{
+					background: context.colors?.secondary,
+					color: context.colors?.primary
+				}}
+			>
 				<Icon icon="fa6-regular:user" />
 				{user}
 			</a>

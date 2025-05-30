@@ -105,7 +105,7 @@ const SolidLastFMViewer = ({
 													>
 														<Icon
 															icon="bi:disc-fill"
-															class="m-auto text-[clamp(10rem,_10vw,_20rem)] *:h-full *:w-full"
+															class="m-auto text-[clamp(10rem,_10vw,_20rem)] [color:var(--default-secondary)] *:h-full *:w-full"
 														/>
 													</div>
 												}

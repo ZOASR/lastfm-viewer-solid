@@ -8,15 +8,13 @@ import { TrackInfo } from "@lastfm-viewer/utils/types";
 import { lfmContext } from "../SolidLastFMViewer";
 import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
-import styles from "@lastfm-viewer/ui/PastTracks.module.css";
-
 const PastTracks = () => {
 	const context = useContext(lfmContext);
 
 	return (
 		<>
 			<div
-				class={styles.pastTracks}
+				class={`pastTracks`}
 				style={{
 					color: context.colors?.secondary,
 					background: context.colors?.accent
@@ -24,7 +22,7 @@ const PastTracks = () => {
 			>
 				<LoadingSkeleton class="h-[200px]" fallback={<div></div>}>
 					<div
-						class={styles.pastTracks__title}
+						class={`pastTracks__title`}
 						style={{
 							color: context.colors?.secondary,
 							background: context.colors?.primary
@@ -42,15 +40,13 @@ const PastTracks = () => {
 					>
 						{(track_) => {
 							return (
-								<div class={styles.pastTracks__track}>
+								<div class={`pastTracks__track`}>
 									<div class="divider m-0.5 h-min"></div>
-									<div class={styles.scrollable}>
+									<div class={`scrollable`}>
 										<a
 											href={track_.url}
 											target="_blank"
-											class={
-												styles.pastTracks__trackTitle
-											}
+											class={`pastTracks__trackTitle`}
 											style={{
 												color: context.colors?.secondary
 											}}
@@ -58,7 +54,7 @@ const PastTracks = () => {
 											{track_.name}
 										</a>
 										<span
-											class={styles.scrollable__artist}
+											class={`scrollable__artist`}
 											style={{
 												color: context.colors?.secondary
 											}}
@@ -67,7 +63,7 @@ const PastTracks = () => {
 											{track_.artist["#text"]}
 										</span>
 										<span
-											class={styles.scrollable__date}
+											class={`scrollable__date`}
 											style={{
 												color: context.colors?.secondary
 											}}

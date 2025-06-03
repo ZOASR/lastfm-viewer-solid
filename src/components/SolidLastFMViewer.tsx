@@ -1,17 +1,19 @@
 import { Show, createContext } from "solid-js";
+import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
+import { Icon } from "@iconify-icon/solid";
 
 import TrackProgressBar from "./TrackProgressBar/TrackProgressBar";
 import PastTracks from "./PastTracks/PastTracks";
-
-import { Icon } from "@iconify-icon/solid";
-
-import { lfmvHook, useLastfmViewer } from "./useLastfmViewer";
 import ErrorView from "./ErrorView/ErrorView";
 import LoadingSkeleton from "./LoadingSkeleton/LoadingSkeleton";
-
-import styles from "@lastfm-viewer/ui/LastFMViewer.module.css";
-import "@lastfm-viewer/ui";
 import CardFooter from "./CardFooter/CardFooter";
+
+import "@lastfm-viewer/ui/styles/LastFMViewer.css";
+import "@lastfm-viewer/ui/styles/ErrorView.css";
+import "@lastfm-viewer/ui/styles/PastTracks.css";
+import "@lastfm-viewer/ui/styles/TrackProgressBar.css";
+import "@lastfm-viewer/ui/styles/CardFooter.css";
+import "@lastfm-viewer/ui/styles";
 
 export interface Props {
 	api_key: string;
@@ -63,7 +65,7 @@ const SolidLastFMViewer = ({
 			{/* preconnects */}
 			<lfmContext.Provider value={state}>
 				<div
-					class={styles.lfmvCard}
+					class={`lfmvCard`}
 					style={{ background: state.colors?.primary }}
 					data-lfmv="dark"
 				>
@@ -130,13 +132,13 @@ const SolidLastFMViewer = ({
 										)}
 									</LoadingSkeleton>
 									<h1
-										class={styles.trackTitle}
+										class={`trackTitle`}
 										style={{
 											color: state.colors?.secondary
 										}}
 									>
 										<LoadingSkeleton
-											class={styles.titleSkeleton}
+											class={`titleSkeleton`}
 											fallback="Track title not available"
 										>
 											{state.track?.trackName}
@@ -149,22 +151,22 @@ const SolidLastFMViewer = ({
 										class="flex flex-col gap-2"
 									>
 										<LoadingSkeleton
-											class={styles.titleSkeleton}
+											class={`titleSkeleton`}
 											fallback="Artist name not available"
 										>
 											{
-												<span class={styles.infoSpan}>
+												<span class={`infoSpan`}>
 													<Icon icon="fa6-regular:user" />
 													{state.track?.artistName}
 												</span>
 											}
 										</LoadingSkeleton>
 										<LoadingSkeleton
-											class={styles.titleSkeleton}
+											class={`titleSkeleton`}
 											fallback="Album name not available"
 										>
 											{state.track?.albumTitle ? (
-												<span class={styles.infoSpan}>
+												<span class={`infoSpan`}>
 													<Icon icon="fa6-solid:compact-disc" />
 													{state.track?.albumTitle}
 												</span>
@@ -172,7 +174,7 @@ const SolidLastFMViewer = ({
 										</LoadingSkeleton>
 									</div>
 								</div>
-								<div class={styles.cardBody}>
+								<div class={`cardBody`}>
 									<PastTracks />
 									<CardFooter user={user} />
 								</div>

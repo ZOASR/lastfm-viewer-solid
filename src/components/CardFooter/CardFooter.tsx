@@ -1,16 +1,10 @@
 import { lfmContext } from "../SolidLastFMViewer";
 import { Icon } from "@iconify-icon/solid";
 import { useContext } from "solid-js";
-
-import styles from "@lastfm-viewer/ui/CardFooter.module.css";
-
 const CardFooter = ({ user }: { user: string }) => {
 	const context = useContext(lfmContext);
 	return (
-		<div
-			style={{ color: context.colors?.secondary }}
-			class={styles.cardFooter}
-		>
+		<div style={{ color: context.colors?.secondary }} class={`cardFooter`}>
 			<span class="flex items-center gap-2">
 				<a
 					href="https://www.last.fm/"
@@ -24,7 +18,7 @@ const CardFooter = ({ user }: { user: string }) => {
 				</a>
 			</span>
 			<a
-				class={styles.profile}
+				class={`profile`}
 				href={`https://www.last.fm/user/${user}`}
 				style={{
 					background: context.colors?.secondary,

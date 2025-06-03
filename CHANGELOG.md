@@ -2,11 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [2.4.0] - 2025-06-03
 
 ### Breaking
 
 - Transfered scoping to postcss-scope plugin and removed css modules
+
+### Update
+
+- V2.4.0
 
 ## [2.3.5] - 2025-06-03
 

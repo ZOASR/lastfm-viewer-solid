@@ -67,113 +67,118 @@ const SolidLastFMViewer = ({
 					style={{ background: state.colors?.primary }}
 					data-lfmv="dark"
 				>
-					{state.track instanceof Error ? (
-						<Show when={state.message}>
-							{
-								<ErrorView
-									mode={mode}
-									message={state.message as string}
-								/>
-							}
-						</Show>
-					) : (
-						<>
-							<div>
-								<figure
-									style={{
-										filter: `drop-shadow(0 0 20px ${state.colors?.coverShadowColor} )`
-									}}
-								>
-									<Show
-										when={state.track?.imageUrl}
-										fallback={
-											<LoadingSkeleton
-												class="mx-auto h-[300px] w-[300px]"
-												fallback={
-													// <img
-													// 	src={disc}
-													// 	class=""
-													// 	alt="Default album cover thumbnail"
-													// />
-													<div
-														classList={{
-															"!animate-spin-slow":
-																state.track
-																	?.nowplaying
-														}}
-														class="h-max"
-													>
-														<Icon
-															icon="bi:disc-fill"
-															class="m-auto text-[clamp(10rem,_10vw,_20rem)] [color:var(--default-secondary)] *:h-full *:w-full"
-														/>
-													</div>
-												}
-											>
-												{null}
-											</LoadingSkeleton>
-										}
+					<div data-lfmv="">
+						{state.track instanceof Error ? (
+							<Show when={state.message}>
+								{
+									<ErrorView
+										mode={mode}
+										message={state.message as string}
+									/>
+								}
+							</Show>
+						) : (
+							<>
+								<div>
+									<figure
+										style={{
+											filter: `drop-shadow(0 0 20px ${state.colors?.coverShadowColor} )`
+										}}
 									>
-										<img
-											src={state.track?.imageUrl}
-											alt="Album cover thumbnail"
-										/>
-									</Show>
-								</figure>
-								<LoadingSkeleton
-									class="mx-auto h-[40px] w-[90%]"
-									fallback={null}
-								>
-									{state.track?.nowplaying && (
-										<TrackProgressBar />
-									)}
-								</LoadingSkeleton>
-								<h1
-									class={styles.trackTitle}
-									style={{ color: state.colors?.secondary }}
-								>
+										<Show
+											when={state.track?.imageUrl}
+											fallback={
+												<LoadingSkeleton
+													class="mx-auto h-[300px] w-[300px]"
+													fallback={
+														// <img
+														// 	src={disc}
+														// 	class=""
+														// 	alt="Default album cover thumbnail"
+														// />
+														<div
+															classList={{
+																"!animate-spin-slow":
+																	state.track
+																		?.nowplaying
+															}}
+															class="h-max"
+														>
+															<Icon
+																icon="bi:disc-fill"
+																class="m-auto text-[clamp(10rem,_10vw,_20rem)] [color:var(--default-secondary)] *:h-full *:w-full"
+															/>
+														</div>
+													}
+												>
+													{null}
+												</LoadingSkeleton>
+											}
+										>
+											<img
+												src={state.track?.imageUrl}
+												alt="Album cover thumbnail"
+											/>
+										</Show>
+									</figure>
 									<LoadingSkeleton
-										class={styles.titleSkeleton}
-										fallback="Track title not available"
+										class="mx-auto h-[40px] w-[90%]"
+										fallback={null}
 									>
-										{state.track?.trackName}
+										{state.track?.nowplaying && (
+											<TrackProgressBar />
+										)}
 									</LoadingSkeleton>
-								</h1>
-								<div
-									style={{ color: state.colors?.secondary }}
-									class="flex flex-col gap-2"
-								>
-									<LoadingSkeleton
-										class={styles.titleSkeleton}
-										fallback="Artist name not available"
+									<h1
+										class={styles.trackTitle}
+										style={{
+											color: state.colors?.secondary
+										}}
 									>
-										{
-											<span class={styles.infoSpan}>
-												<Icon icon="fa6-regular:user" />
-												{state.track?.artistName}
-											</span>
-										}
-									</LoadingSkeleton>
-									<LoadingSkeleton
-										class={styles.titleSkeleton}
-										fallback="Album name not available"
+										<LoadingSkeleton
+											class={styles.titleSkeleton}
+											fallback="Track title not available"
+										>
+											{state.track?.trackName}
+										</LoadingSkeleton>
+									</h1>
+									<div
+										style={{
+											color: state.colors?.secondary
+										}}
+										class="flex flex-col gap-2"
 									>
-										{state.track?.albumTitle ? (
-											<span class={styles.infoSpan}>
-												<Icon icon="fa6-solid:compact-disc" />
-												{state.track?.albumTitle}
-											</span>
-										) : null}
-									</LoadingSkeleton>
+										<LoadingSkeleton
+											class={styles.titleSkeleton}
+											fallback="Artist name not available"
+										>
+											{
+												<span class={styles.infoSpan}>
+													<Icon icon="fa6-regular:user" />
+													{state.track?.artistName}
+												</span>
+											}
+										</LoadingSkeleton>
+										<LoadingSkeleton
+											class={styles.titleSkeleton}
+											fallback="Album name not available"
+										>
+											{state.track?.albumTitle ? (
+												<span class={styles.infoSpan}>
+													<Icon icon="fa6-solid:compact-disc" />
+													{state.track?.albumTitle}
+												</span>
+											) : null}
+										</LoadingSkeleton>
+									</div>
 								</div>
-							</div>
-
-							<div class={styles.cardBody}>
-								<PastTracks />
-								<CardFooter user={user} />
-							</div>
-						</>
-					)}
+								<div class={styles.cardBody}>
+									<PastTracks />
+									<CardFooter user={user} />
+								</div>
+							</>
+						)}
+					</div>
 				</div>
 			</lfmContext.Provider>
 		</>

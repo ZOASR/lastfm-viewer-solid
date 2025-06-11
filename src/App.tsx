@@ -15,11 +15,7 @@ function App() {
 				View {isTest() ? "Live" : "Test"}
 			</button>
 			{!isTest() && (
-				<SolidLastFMViewer
-					user="ZOASR"
-					api_key={import.meta.env.VITE_API_KEY}
-					updateInterval={10000}
-				/>
+				<SolidLastFMViewer user="ZOASR" updateInterval={10000} />
 			)}
 			{isTest() && <Test api_key={import.meta.env.VITE_API_KEY} />}
 			{/* <Test api_key="very_wrong_api_key" /> */}

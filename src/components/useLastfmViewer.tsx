@@ -11,9 +11,8 @@ export type lfmvHook = {
 	message: string | undefined;
 };
 
-export const useLastfmViewer: ({}: Props) => lfmvHook = ({
+export const useLastfmViewer: (props: Props) => lfmvHook = ({
 	user,
-	api_key,
 	updateInterval
 }: Props) => {
 	const [track, { refetch }] = createResource(get);
@@ -47,7 +46,7 @@ export const useLastfmViewer: ({}: Props) => lfmvHook = ({
 		source: boolean,
 		{ value }: { value: TrackInfo | Error | undefined }
 	) {
-		const data: TrackInfo | Error = await getLatestTrack(user, api_key);
+		const data: TrackInfo | Error = await getLatestTrack(user);
 		const dataTrack: string | undefined = !(data instanceof Error)
 			? data.trackName
 			: "";

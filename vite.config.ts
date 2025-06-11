@@ -15,13 +15,14 @@ export default defineConfig({
 			name: "solid-lastfm-viewer",
 			fileName: (format) => `index.${format}.js`
 		},
-		rollupOptions: {
-			external: ["solidJs"],
-			output: {
-				globals: {
-					solidJs: "solidJs"
-				}
-			}
+	rollupOptions: {
+		external: ["solidJs"],
+		output: {
+			globals: {
+				solidJs: "solidJs"
+			},
+			sourcemapExcludeSources: true
 		}
+	}
 	}
 });

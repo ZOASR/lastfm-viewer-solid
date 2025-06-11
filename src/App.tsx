@@ -17,8 +17,7 @@ function App() {
 			{!isTest() && (
 				<SolidLastFMViewer user="ZOASR" updateInterval={10000} />
 			)}
-			{isTest() && <Test api_key={import.meta.env.VITE_API_KEY} />}
-			{/* <Test api_key="very_wrong_api_key" /> */}
+			{isTest() && <Test />}
 		</>
 	);
 }

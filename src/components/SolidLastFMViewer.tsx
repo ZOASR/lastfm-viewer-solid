@@ -85,7 +85,7 @@ const SolidLastFMViewer = ({ user, updateInterval, mode = "dev" }: Props) => {
 											when={state.track?.imageUrl}
 											fallback={
 												<LoadingSkeleton
-													class="mx-auto h-[300px] w-[300px]"
+													class="mx-auto aspect-square w-full"
 													fallback={
 														<span class="[color:var(--default-secondary)]">
 															<Icon

@@ -12,17 +12,17 @@ export default defineConfig({
 		...viteConfig.build,
 		lib: {
 			entry: path.resolve(__dirname, "index.ts"),
-			name: "solid-lastfm-viewer",
+			name: "@lastfm-viewer/solid",
 			fileName: (format) => `index.${format}.js`
 		},
-	rollupOptions: {
-		external: ["solidJs"],
-		output: {
-			globals: {
-				solidJs: "solidJs"
-			},
-			sourcemapExcludeSources: true
+		rollupOptions: {
+			external: ["solidJs"],
+			output: {
+				globals: {
+					solidJs: "solidJs"
+				},
+				sourcemapExcludeSources: true
+			}
 		}
-	}
 	}
 });

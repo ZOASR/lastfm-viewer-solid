@@ -88,16 +88,26 @@ const SolidLastFMViewer = ({ user, updateInterval, mode = "dev" }: Props) => {
 													class="mx-auto aspect-square w-full"
 													fallback={
 														<span class="[color:var(--default-secondary)]">
-															<Icon
-																icon="bi:disc-fill"
-																class="m-auto text-[100px] transition-all *:h-full *:w-full sm:text-[300px]"
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																aria-hidden="true"
+																role="img"
+																class="h-full w-full"
 																classList={{
 																	"!animate-spin-slow":
 																		state
 																			.track
 																			?.nowplaying
 																}}
-															/>
+																width="1em"
+																height="1em"
+																viewBox="0 0 16 16"
+															>
+																<path
+																	fill="currentColor"
+																	d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-6 0a2 2 0 1 0-4 0a2 2 0 0 0 4 0M4 8a4 4 0 0 1 4-4a.5.5 0 0 0 0-1a5 5 0 0 0-5 5a.5.5 0 0 0 1 0m9 0a.5.5 0 1 0-1 0a4 4 0 0 1-4 4a.5.5 0 0 0 0 1a5 5 0 0 0 5-5"
+																></path>
+															</svg>
 														</span>
 													}
 												>

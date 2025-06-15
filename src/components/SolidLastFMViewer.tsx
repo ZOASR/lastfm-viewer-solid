@@ -69,7 +69,7 @@ const SolidLastFMViewer = ({ user, updateInterval, mode = "dev" }: Props) => {
 								{
 									<ErrorView
 										mode={mode}
-										message={state.message as string}
+										error={state.track as Error}
 									/>
 								}
 							</Show>
